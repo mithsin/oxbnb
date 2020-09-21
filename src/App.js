@@ -1,13 +1,12 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Home } from 'Pages';
+import PageRouter from 'PageRouter';
+import { Header } from 'Constants';
 
 function App() {
   return (
     <div className="App">
-        <Switch>
-          <Route exact path="/" component = { Home } />
-        </Switch>
+        <Header />
+        <PageRouter />
     </div>
   );
 }
