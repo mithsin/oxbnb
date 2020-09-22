@@ -1,15 +1,15 @@
 import React from 'react';
+import ImgPreNextCarousel from 'Components/ImageBlock/ImgPreNextCarousel';
+import { useStyles } from './styles';
+import { imgSrc } from 'Utils/imageSrc';
 
 const Home = () => {
-    const imgSrc = "https://a0.muscache.com/im/pictures/11efec50-4ab2-44af-8c4a-d63633dbd4ba.jpg?aki_policy=large"
+    const classes = useStyles()
     return(
-        <div>
-            <div>
-                <div>Prev</div>
-                <img className={imgSrc} src={imgSrc} alt="headerImages" />
-                <div>Next</div>
+        <div style={{paddingTop: "100px"}}>
+            <div className={classes.imgCarouselWrapper}>
+                <ImgPreNextCarousel imgSrc={ imgSrc } />
             </div>
-
             <div>
 
             </div>

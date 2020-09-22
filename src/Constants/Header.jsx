@@ -19,13 +19,14 @@ const useStyles = makeStyles((theme) => ({
   headerWrapper: {
     margin: "2rem 0",
     position: "fixed",
-    width: "100%"
+    width: "100%",
+    zIndex: "9999"
   },
   grow: {
     flexGrow: 1,
   },
   root: {
-    backgroundColor: "#ffffff1a",
+    backgroundColor: "#ffffff00",
     color: "#313131",
     boxShadow: 'none'
   },
@@ -89,6 +90,7 @@ const Header = () => {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
+      style={{ top: '54px'}}
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
