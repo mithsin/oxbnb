@@ -18,3 +18,7 @@ const Cognito = () => {
 }
 
 // https://www.youtube.com/watch?v=-qo5GFdN-Ck
+
+// Google
+// Google id: 215313791418-apetni40hv97o9g8cuafa0h7nhrvoooi.apps.googleusercontent.com
+// Google secret: xR4LA1FGWOrH_GwAIK8HSOP3
