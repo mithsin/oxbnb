@@ -15,12 +15,15 @@ const poolData = {
 const userPool = new CognitoUserPool(poolData);
 
 export const userSlice = createSlice({
-    name: 'cognitoState',
+    name: 'userCognitoState',
     initialState: {
         isLoggedIn: false,
+        isAgent: false,
+        firstName: '',
+        lastName: '',
         profilePicUrl: '',
-        name: '',
-        currency: ''
+        currency: 'USD',
+        phoneNumber: '',
     },
     reducers: {
         setUserState: (state, action) => {
@@ -76,7 +79,6 @@ export const userSignUp = ({eMail, phoneNumber, password}) => dispatch => {
             return;
         } else {
             var cognitoUser = result.user;
-            const userData = JSON.stringify({eMail, phoneNumber, UserId: cognitoUser.getUsername()});
             alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
         }
     })
@@ -192,8 +194,13 @@ export const userLoginCheck = () => dispatch => {
     } 
 };
 
+// AWS getSession varify user and attributes
+export const retriveUserAttributeSl = () => dispatch => {
 
-export const userState = state => state.userSlice;
+};
+
+
+export const userState = state => state.userCognitoState;
 export default userSlice.reducer;
 
 // https://www.youtube.com/watch?v=-qo5GFdN-Ck

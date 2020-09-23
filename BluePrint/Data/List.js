@@ -2,7 +2,7 @@ const allListed = [
     {
         listId: "listId-12jfosdjf1",
         imageList: [],
-        profileImage: "a.jpg",
+        listProfileImg: "a.jpg",
         type: ["rent"],
         address: {
             street: "123 test address st",
@@ -20,7 +20,7 @@ const allListed = [
         listId: "listId-12fsdjof1",
         type: ["rent", "sale"],
         imageList: [],
-        profileImage: "a.jpg",
+        listProfileImg: "a.jpg",
         address: {
             street: "333 test address dr",
             address2: "",

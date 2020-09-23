@@ -108,6 +108,7 @@ const Header = () => {
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
+      style={{ top: '70px'}}
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
