@@ -14,7 +14,12 @@ const allListed = [
             hourilyPrice: 15,
             dailyPrice: 200,
             monthlyPrice: 2000,
-        }
+        },
+        rating: 4,
+        comments: [{
+            date: "1/2/2020",
+            message: "abc"
+        }]
     },
     {
         listId: "listId-12fsdjof1",

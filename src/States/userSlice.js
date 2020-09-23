@@ -17,39 +17,56 @@ const userPool = new CognitoUserPool(poolData);
 export const userSlice = createSlice({
     name: 'userCognitoState',
     initialState: {
-        isLoggedIn: false,
-        isAgent: false,
-        firstName: '',
-        lastName: '',
         profilePicUrl: '',
+        preferredUsername: '',
+        familyName: '',
+        givenName: '',
         currency: 'USD',
         phoneNumber: '',
+        isLoggedIn: false,
+        isAgent: false,
     },
     reducers: {
         setUserState: (state, action) => {
             return {...state, ...action.payload};
         },
-        setIsLoggedIn: (state, action) => {
-            state.isLoggedIn = action.payload;
-        },
         setProfilePicUrl: (state, action) => {
             state.profilePicUrl = action.payload;
         },
-        setName: (state, action) => {
-            state.name = action.payload;
+        setPreferredUsername: (state, action) => {
+            state.preferred_username = action.payload;
+        },
+        setFamilyName: (state, action) => {
+            state.family_name = action.payload;
+        },
+        setGivenName: (state, action) => {
+            state.given_name = action.payload;
         },
         setCurrency: (state, action) => {
             state.currency = action.payload;
+        },
+        setPhoneNumber: (state, action) => {
+            state.phoneNumber = action.payload;
+        },
+        setIsLoggedIn: (state, action) => {
+            state.isLoggedIn = action.payload;
+        },
+        setIsAgent: (state, action) => {
+            state.isAgent = action.payload;
         },
     },
 });
 
 export const {
     setUserState,
-    setIsLoggedIn,
     setProfilePicUrl,
-    setName,
+    setPreferredUsername,
+    setFamilyName,
+    setGivenName,
     setCurrency,
+    setPhoneNumber,
+    setIsLoggedIn,
+    setIsAgent,
 } = userSlice.actions;
 
 // AWS Cognito User Sign Up
@@ -195,12 +212,14 @@ export const userLoginCheck = () => dispatch => {
 };
 
 // AWS getSession varify user and attributes
-export const retriveUserAttributeSl = () => dispatch => {
+// export const retriveUserAttributeSl = () => dispatch => {
 
-};
+// };
 
 
 export const userState = state => state.userCognitoState;
+export const userStateIsLoggedIn = state => state.userIsLoggedIn;
+export const userStateIsAgent = state => state.userIsAgent;
 export default userSlice.reducer;
 
 // https://www.youtube.com/watch?v=-qo5GFdN-Ck
