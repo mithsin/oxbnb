@@ -74,19 +74,11 @@ export const userSignUp = ({eMail, phoneNumber, password}) => dispatch => {
         if (err) {
             alert(('cognitoSlice' + err.message) || JSON.stringify('cognitoSlice' + err));
             return;
+        } else {
+            var cognitoUser = result.user;
+            const userData = JSON.stringify({eMail, phoneNumber, UserId: cognitoUser.getUsername()});
+            alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
         }
-        var cognitoUser = result.user;
-        const userData = JSON.stringify({eMail, phoneNumber, UserId: cognitoUser.getUsername()});
-        alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
-
-        // send user data to DynamoDB
-        axios.post(`${postURL}/user`, userData, {
-            headers: { 'Content-Type' : 'application/json' }
-          })
-          .then(res => {
-              console.log("login successful, should redirect to login page again")
-          })
-          .catch(err => console.log('err', err))
     })
 };
 
