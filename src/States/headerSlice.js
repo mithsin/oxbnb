@@ -32,8 +32,8 @@ export const {
 } = headerSlice.actions;
 
 export const headerData = state => state.headerState;
-export const messages = state => state.headerState.messages;
-export const notifications = state => state.headerState.notifications;
-export const currency = state => state.headerState.currency;
+export const headerMessages = state => state.headerState.messages;
+export const headerNotifications = state => state.headerState.notifications;
+export const headerCurrency = state => state.headerState.currency;
 
 export default headerSlice.reducer;
