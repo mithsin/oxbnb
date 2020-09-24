@@ -15,7 +15,7 @@ const poolData = {
 const userPool = new CognitoUserPool(poolData);
 
 export const userSlice = createSlice({
-    name: 'userCognitoState',
+    name: 'userState',
     initialState: {
         profilePicUrl: '',
         preferredUsername: '',
@@ -23,8 +23,8 @@ export const userSlice = createSlice({
         givenName: '',
         currency: 'USD',
         phoneNumber: '',
-        isLoggedIn: false,
         isAgent: false,
+        isLoggedIn: false,
     },
     reducers: {
         setUserState: (state, action) => {
@@ -70,7 +70,16 @@ export const {
 } = userSlice.actions;
 
 // AWS Cognito User Sign Up
-export const userSignUp = ({eMail, phoneNumber, password}) => dispatch => {
+export const userSignUp = ({
+    eMail, 
+    phoneNumber, 
+    password,
+    picture = null,
+    preferredUsername = null,
+    familyName = null,
+    givenName = null,
+    isAgent = null
+}) => dispatch => {
     const dataEmail = {
         Name: 'email',
         Value: eMail,
@@ -79,18 +88,49 @@ export const userSignUp = ({eMail, phoneNumber, password}) => dispatch => {
         Name: 'phone_number',
         Value: phoneNumber,
     };
+    const dataPicture = {
+        name: 'picture',
+        value: picture,
+    };
+    const dataPreferredUsername = {
+        name: 'preferred_username',
+        value: preferredUsername,
+    }
+    const dataFamilyName = {
+        name: 'family_name',
+        value: familyName,
+    }
+    const datagivenName = {
+        name: 'given_name',
+        value: givenName,
+    }
+    const dataIsAgent = {
+        name: 'custom:isAgent',
+        value: isAgent
+    }
     
-    const attributeList = [];
     const attributeEmail = new CognitoUserAttribute(dataEmail);
     const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
+    const attributePicture = new CognitoUserAttribute(dataPicture);
+    const attributePreferredUsername = new CognitoUserAttribute(dataPreferredUsername);
+    const attributeFamilyName = new CognitoUserAttribute(dataFamilyName);
+    const attributegivenName = new CognitoUserAttribute(datagivenName);
+    const attributeIsAgent = new CognitoUserAttribute(dataIsAgent);
 
-    attributeList.push(attributeEmail);
-    attributeList.push(attributePhoneNumber);
+    const attributeList = [
+        attributeEmail,
+        attributePhoneNumber,
+        attributePicture,
+        attributePreferredUsername,
+        attributeFamilyName,
+        attributegivenName,
+        attributeIsAgent,
+    ];
 
-    userPool.signUp( eMail, password, attributeList, null, function(
+    userPool.signUp( eMail, password, attributeList, null, (
         err,
         result
-    ) {
+    ) => {
         if (err) {
             alert(('cognitoSlice' + err.message) || JSON.stringify('cognitoSlice' + err));
             return;
@@ -98,7 +138,7 @@ export const userSignUp = ({eMail, phoneNumber, password}) => dispatch => {
             var cognitoUser = result.user;
             alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
         }
-    })
+    });
 };
 
 // AWS Cognito User Verification by Email
@@ -217,9 +257,9 @@ export const userLoginCheck = () => dispatch => {
 // };
 
 
-export const userState = state => state.userCognitoState;
-export const userStateIsLoggedIn = state => state.userIsLoggedIn;
-export const userStateIsAgent = state => state.userIsAgent;
+export const userCognitoState = state => state.userState;
+export const userIsLoggedIn = state => state.userState.isLoggedIn;
+export const userIsAgent = state => state.userState.isAgent;
 export default userSlice.reducer;
 
 // https://www.youtube.com/watch?v=-qo5GFdN-Ck
