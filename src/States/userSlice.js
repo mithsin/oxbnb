@@ -80,61 +80,19 @@ export const userSignUp = ({
     givenName = null,
     isAgent = null
 }) => dispatch => {
-    // const dataEmail = {
-    //     Name: 'email',
-    //     Value: eMail,
-    // };
-    // const dataPhoneNumber = {
-    //     Name: 'phone_number',
-    //     Value: phoneNumber,
-    // };
-    // const dataPicture = {
-    //     name: 'picture',
-    //     value: picture,
-    // };
-    // const dataPreferredUsername = {
-    //     name: 'preferred_username',
-    //     value: preferredUsername,
-    // }
-    // const dataFamilyName = {
-    //     name: 'family_name',
-    //     value: familyName,
-    // }
-    // const datagivenName = {
-    //     name: 'given_name',
-    //     value: givenName,
-    // }
-    // const dataIsAgent = {
-    //     name: 'custom:isAgent',
-    //     value: isAgent
-    // }
-    
-    // const attributeEmail = new CognitoUserAttribute(dataEmail);
-    // const attributePhoneNumber = new CognitoUserAttribute(dataPhoneNumber);
-    // const attributePicture = new CognitoUserAttribute(dataPicture);
-    // const attributePreferredUsername = new CognitoUserAttribute(dataPreferredUsername);
-    // const attributeFamilyName = new CognitoUserAttribute(dataFamilyName);
-    // const attributegivenName = new CognitoUserAttribute(datagivenName);
-    // const attributeIsAgent = new CognitoUserAttribute(dataIsAgent);
-    // const attributeList = [];
-    // attributeList.push(attributeEmail);
-    // attributeList.push(attributePhoneNumber);
-    // attributeList.push(attributePicture);
-    // attributeList.push(attributePreferredUsername);
-    // attributeList.push(attributeFamilyName);
-    // attributeList.push(attributegivenName);
-    // attributeList.push(attributeIsAgent);
-    // const attributeList = [
-    //     attributeEmail,
-    //     attributePhoneNumber,
-    //     attributePicture,
-    //     attributePreferredUsername,
-    //     attributeFamilyName,
-    //     attributegivenName,
-    //     attributeIsAgent,
-    // ];
 
-    userPool.signUp( eMail, password, [], null, (err, result) => {
+    const attributeList = [
+        new CognitoUserAttribute({Name: 'email', Value: eMail}),
+        new CognitoUserAttribute({Name: 'phone_number', Value: `+1${phoneNumber}`}),
+        new CognitoUserAttribute({Name: 'custom:isAgent', Value: picture }),
+        new CognitoUserAttribute({Name: 'preferred_username', Value: preferredUsername }),
+        new CognitoUserAttribute({Name: 'family_name', Value: familyName }),
+        new CognitoUserAttribute({Name: 'given_name', Value: givenName }),
+        new CognitoUserAttribute({Name: 'custom:isAgent', Value: isAgent })
+    ];
+    console.log('attributeList--->: ', attributeList)
+
+    userPool.signUp( eMail, password, attributeList, null, (err, result) => {
         if (err) {
             alert(('cognitoSlice' + err.message) || JSON.stringify('cognitoSlice' + err));
             return;
