@@ -1,6 +1,6 @@
 import React from 'react';
 import PageRouter from 'PageRouter';
-import { Header } from 'Constants';
+import { Header } from 'Pages/Constants';
 
 function App() {
   return (

@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { userSignUp } from 'States/userSlice';
+import { signUpStyles } from './styles';
 import ImageUpload from 'Components/ImageUpload/ImageUpload';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
-import {Radio, RadioGroup, FormControlLabel} from '@material-ui/core';
+import {
+    Radio, 
+    RadioGroup, 
+    FormControlLabel,
+    FormControl,
+    FormLabel,
+} from '@material-ui/core';
 
 const SignUp = () => {
     const dispatch = useDispatch();
-    const [inputData, setInputData] = useState({});
+    const [inputData, setInputData] = useState({isAgent: 'no'});
     const [imageURL, setImageURL] = useState('');
-
+    const [emailError, setEmailError] = useState('');
+    const [numError, setNumError] = useState('');
+    const classes = signUpStyles();
+    
     const onInputChange = e => {
+        const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        const phoneNumberRegex = /^\d+$/;
+        if(e.target.name === 'eMail' && emailRegex.test(e.target.value)){
+            setEmailError(true)
+        };
+        if(e.target.name === 'phoneNumber' && phoneNumberRegex.test(e.target.value)){
+            setNumError(true)
+        };
         setInputData({
             ...inputData,
             [e.target.name]: e.target.value
@@ -19,8 +37,13 @@ const SignUp = () => {
     };
     const onFormSubmit = () => {
         console.log("submit inputData -> ", inputData)
+        const params = {
+            ...inputData,
+            picture: imageURL
+        }
         setInputData({});
-        // dispatch(userSignUp(inputData));
+        console.log('params----------->: ', params)
+        // dispatch(userSignUp(params));
     };
     
     const inputSetting = [
@@ -28,18 +51,22 @@ const SignUp = () => {
             name: 'eMail',
             label: 'E-Mail',
             required: true,
+            inputError: false,
             value: inputData.eMail || ''
         },
         {
             name: 'phoneNumber',
             label: 'Phone Number',
             required: true,
+            inputError: false,
             value: inputData.phoneNumber || ''
         },
         {
             name: 'password',
             label: 'Password',
+            type: 'password',
             required: true,
+            inputError: false,
             value: inputData.password || ''
         },
         {
@@ -62,7 +89,6 @@ const SignUp = () => {
         }
     ];
 
-    const profileImage = imageURL;
     const isAgentSetting = {
         type: "content",
         title: "Are you an Agent or Host?",
@@ -80,38 +106,51 @@ const SignUp = () => {
     };
 
     return (
-        <div>
-            <div style={{marginTop: '100px'}}>
+        <div className={ classes.signUpBodyWrapper }>
+            <div className={ classes.signUpInnerWrap }>
                 <h1>SIGN UP</h1>
-                <ImageUpload setImageURL={setImageURL}/>
-                {inputSetting.map((fill, index) => 
-                    <MuiInputField 
-                        key={`${fill.name}-${index}`} 
-                        { ...fill }
-                        type="text"
-                        onChange={ onInputChange } />
-                )}
-                <RadioGroup 
-                    aria-label="isAgent" 
-                    name="isAgent" 
-                    row
-                    style={{justifyContent: "space-around", flex: "1"}}
-                    value={isAgentSetting.isAgent} 
-                    onChange={onInputChange} >
-                        {
-                            isAgentSetting.contentList.map((listItem, indexi) => (
-                                <FormControlLabel 
-                                    key={`${inputSetting.name}-${indexi}`} 
-                                    value={listItem.value} 
-                                    control={<Radio />} 
-                                    label={listItem.label} />
-                            ))
-                        }
-                </RadioGroup>
-                <SubmitButton onClick={ onFormSubmit }/>
+                <div className={ classes.signUpFormWrapper }>
+                    { (emailError || numError ) && 
+                        <h2 className={ classes.error }>
+                            {emailError && emailError}
+                            {numError &&  numError}
+                        </h2>
+                    }
+               
+                    <ImageUpload setImageURL={setImageURL}/>
+                   
+                    {inputSetting.map((fill, index) => 
+                        <MuiInputField 
+                            key={`${fill.name}-${index}`} 
+                            { ...fill }
+                            onChange={ onInputChange } />
+                    )}
+                    <FormControl
+                        className={ classes.inputContainer }
+                        component="fieldset">
+                        <FormLabel component="legend">Are you a host or agent?</FormLabel>
+                        <RadioGroup 
+                            aria-label="isAgent" 
+                            name="isAgent" 
+                            row
+                            className={ classes.radioContainer }
+                            value={isAgentSetting.isAgent} 
+                            onChange={onInputChange} >
+                                {
+                                    isAgentSetting.contentList.map((listItem, indexi) => (
+                                        <FormControlLabel 
+                                            key={`${inputSetting.name}-${indexi}`} 
+                                            value={listItem.value} 
+                                            control={<Radio />} 
+                                            label={listItem.label} />
+                                    ))
+                                }
+                        </RadioGroup>
+                    </FormControl>
+                    <SubmitButton onClick={ onFormSubmit }/>
+                </div>
             </div>
         </div>
-
     );
 }
 

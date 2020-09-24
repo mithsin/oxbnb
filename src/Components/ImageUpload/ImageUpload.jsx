@@ -6,11 +6,11 @@ const ImageUpload = ({setImageURL}) => {
     const [loading, setLoading] = useState(false);
     
     const uploadImage = e => {
+        setLoading(true)
         const files = e.target.files[0];
         const formData = new FormData();
-        formData.append("upload_preset", "oxbnb")
+        formData.append("upload_preset", "pafoxbnb")
         formData.append("file", files) 
-        setLoading(true);
         axios.post(`${process.env.REACT_APP_CLOUDINARY_URL}`, formData)
             .then(res=> {
                 const resUrl = res.data.secure_url;
@@ -19,27 +19,32 @@ const ImageUpload = ({setImageURL}) => {
                 setImage(url250);
                 setImageURL(url250);
             })
-            .then(setLoading(false))
+            .then(()=>{
+                setLoading(false)
+            })
             .catch(err=> console.log(err))
     }
-
 return (
-    <div id="dropbox" styel={{
-        border: '4px dashed #ccc',
-        paddingLeft: '8px'}}>
-        <input
-            type="file"
-            name="file"
-            placeholder="Upload an image"
-            onChange={ uploadImage } 
-        />
-        {
-            loading ? (
-                <h2>Loading image...</h2>
-            ): (
-                <img src={ image } alt={ image } style={{ width: "100px" }} />
-            )
-        }
+    <div 
+        id="dropbox" 
+        style={{
+            border: '4px dashed #ccc',
+            padding: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            margin: '16px 0',
+        }}>
+        <div style={{ flex: "1 0 50%"}}>
+            { loading ? <h3>Uploading...</h3> : <h3>Upload Image</h3> }
+            <input
+                type="file"
+                name="file"
+                placeholder="Upload an image"
+                onChange={ uploadImage }/>
+        </div>
+        <div style={{ flex: "1 0 50%"}}>
+            <img src={ image } alt={ image } style={{ width: "100px" }} />
+        </div>
     </div>
 )};
 
