@@ -116,21 +116,25 @@ export const userSignUp = ({
     const attributeFamilyName = new CognitoUserAttribute(dataFamilyName);
     const attributegivenName = new CognitoUserAttribute(datagivenName);
     const attributeIsAgent = new CognitoUserAttribute(dataIsAgent);
-
+    // const attributeList = [];
+    // attributeList.push(attributeEmail);
+    // attributeList.push(attributePhoneNumber);
+    // // attributeList.push(attributePicture);
+    // // attributeList.push(attributePreferredUsername);
+    // // attributeList.push(attributeFamilyName);
+    // // attributeList.push(attributegivenName);
+    // // attributeList.push(attributeIsAgent);
     const attributeList = [
         attributeEmail,
         attributePhoneNumber,
-        attributePicture,
-        attributePreferredUsername,
-        attributeFamilyName,
-        attributegivenName,
-        attributeIsAgent,
+        // attributePicture,
+        // attributePreferredUsername,
+        // attributeFamilyName,
+        // attributegivenName,
+        // attributeIsAgent,
     ];
-
-    userPool.signUp( eMail, password, attributeList, null, (
-        err,
-        result
-    ) => {
+    console.log('attributeList---->: ', attributeList)
+    userPool.signUp( eMail, password, [], null, (err, result) => {
         if (err) {
             alert(('cognitoSlice' + err.message) || JSON.stringify('cognitoSlice' + err));
             return;

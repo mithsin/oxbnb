@@ -36,14 +36,13 @@ const SignUp = () => {
         })
     };
     const onFormSubmit = () => {
-        console.log("submit inputData -> ", inputData)
         const params = {
             ...inputData,
             picture: imageURL
         }
         setInputData({});
         console.log('params----------->: ', params)
-        // dispatch(userSignUp(params));
+        dispatch(userSignUp(params));
     };
     
     const inputSetting = [
