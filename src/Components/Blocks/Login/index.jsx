@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from 'States/userSlice';
+import { useHistory } from 'react-router-dom';
 import { signUpStyles } from './styles';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
 
 const Login = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const classes = signUpStyles();
     const [inputData, setInputData] = useState({
         eMail: '',
@@ -43,10 +45,9 @@ const Login = () => {
     };
     const onClickLoginIn = () => {
         dispatch(userLogin(inputData.eMail, inputData.password));
-        // clearInput();
     };
     const onClickSignUpRedirect = () => {
-        console.log('redirect to sign up')
+        history.push('/signup')
     };
     const inputSetting = [
         {
@@ -59,6 +60,7 @@ const Login = () => {
         {
             name: 'password',
             label: 'Password',
+            type: 'password',
             required: true,
             inputError: numError ? true : false,
             value: inputData?.password
@@ -76,11 +78,10 @@ const Login = () => {
                             { ...fill }
                             onChange={ onInputChange } />
                     )}
-                    
                     <SubmitButton {...submitDisable && {disabled : submitDisable}} onClick={ onClickLoginIn }/>
                 </div>
-                <div className={ classes.resendCodeWrapper}>
-                    <span className={ classes.resendCode } onClick={onClickSignUpRedirect}>SIGN UP</span>
+                <div className={ classes.routeLinkWrapper}>
+                    <span className={ classes.signUp } onClick={onClickSignUpRedirect}>SIGN UP</span>
                 </div>
             </div>
         </div>

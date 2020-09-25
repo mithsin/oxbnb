@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { userIsLoggedIn } from 'States/userSlice';
-import { useHistory } from 'react-router-dom';
-import { LoginButton } from 'Components/MUI/ButtonTypes';
+import Login from 'Components/Blocks/Login';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     AppBar,
@@ -32,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#ffffff00",
     color: "#313131",
-    boxShadow: 'none'
+    boxShadow: 'none',
+    position: 'relative'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -62,10 +62,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
-  const history = useHistory();
   const isLoggedIn = useSelector(userIsLoggedIn)
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
+  const [openLoginBlock, setopenLoginBlock] = useState(false);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -86,7 +86,6 @@ const Header = () => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
-
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -179,7 +178,7 @@ const Header = () => {
           aria-label="sign up account"
           aria-controls={menuId}
           aria-haspopup="true"
-          onClick={() => history.push('/signup')}
+          onClick={()=> setopenLoginBlock(!openLoginBlock)}
           color="inherit"
         >
           <AccountCircle className={classes.iconSize} />
@@ -220,6 +219,14 @@ const Header = () => {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
+      {openLoginBlock && 
+        <div 
+          style={{
+            width: '500px', 
+            position: 'absolute', 
+            top: '0', 
+            right: '0'
+          }}><Login /></div>}
     </div>
   );
 }

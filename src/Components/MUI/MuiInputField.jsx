@@ -15,9 +15,12 @@ const MuiInputField = ({
 }) => {
       const useStyles = makeStyles((theme) => ({
         root: {
-          backgroundColor: '#fff',
           color: '#000',
-          marginBottom: "6px"
+          marginBottom: "6px",
+          "& input": {
+            backgroundColor: '#fff',
+            borderRadius: '6px'
+          }
         },
       }));
     const classes = useStyles();
