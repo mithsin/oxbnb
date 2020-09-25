@@ -33,5 +33,22 @@ export const signUpStyles = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
+    },
+    resendCodeWrapper: {
+        display: 'flex',
+        justifyContent: 'flex-end'
+    },
+    resendCode: {
+        color: '#3f51b5',
+        padding: '6px',
+        borderRadius: '6px',
+        '&:hover': {
+            color: '#fff',
+            backgroundColor: '#3f51b5'
+        }
+    },
+    errorText: {
+        color: '#FF0000',
+        padding: '6px'
     }
 });

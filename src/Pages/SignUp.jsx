@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { userSignUp } from 'States/userSlice';
 import { signUpStyles } from './styles';
+import { useHistory } from 'react-router-dom';
 import ImageUpload from 'Components/ImageUpload/ImageUpload';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
@@ -15,6 +16,7 @@ import {
 
 const SignUp = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [inputData, setInputData] = useState({isAgent: 'no'});
     const [imageURL, setImageURL] = useState('');
     const [submitDisable, setSubmitDisable] = useState(true);
@@ -51,7 +53,8 @@ const SignUp = () => {
     const onFormSubmit = () => {
         const params = {
             ...inputData,
-            picture: imageURL
+            picture: imageURL,
+            history: history
         }
         
         dispatch(userSignUp(params));

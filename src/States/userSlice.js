@@ -78,7 +78,8 @@ export const userSignUp = ({
     preferredUsername = null,
     familyName = null,
     givenName = null,
-    isAgent = null
+    isAgent = null,
+    history
 }) => dispatch => {
 
     const attributeList = [
@@ -99,6 +100,7 @@ export const userSignUp = ({
         } else {
             var cognitoUser = result.user;
             alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
+            history.push('/verify-account');
         }
     });
 };
@@ -112,7 +114,6 @@ export const verificationAccount = (eMail, code, history) => dispatch => {
     const cognitoUser = new CognitoUser(userData);
     cognitoUser.confirmRegistration(code, true, (err, result) => {
         if (err) {
-            console.log("verification error --->: ", err.message);
             alert(err.message || JSON.stringify(err));
             return;
         } else {
@@ -121,6 +122,21 @@ export const verificationAccount = (eMail, code, history) => dispatch => {
             // trigger user data update for giving and recieving list card Id
         }
     })
+};
+
+export const resendVerificationCode = (eMail) => dispatch => {
+    const userData = {
+        Username: eMail,
+        Pool: userPool,
+    };
+    const cognitoUser = new CognitoUser(userData);
+    cognitoUser.resendConfirmationCode(function(err, result) {
+        if (err) {
+            alert(err.message || JSON.stringify(err));
+            return;
+        }
+        alert(`your new code is send to: ${eMail}`)
+    });
 };
 
 // AWS Cognito Send Change Password Link

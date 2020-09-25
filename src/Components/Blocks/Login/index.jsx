@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { verificationAccount, resendVerificationCode } from 'States/userSlice';
+import { userLogin } from 'States/userSlice';
 import { signUpStyles } from './styles';
-import { useHistory } from 'react-router-dom';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
 
-const Verify = () => {
+const Login = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    const classes = signUpStyles();
     const [inputData, setInputData] = useState({
         eMail: '',
-        code: ''
+        password: ''
     });
     const [submitDisable, setSubmitDisable] = useState(true);
     const [emailError, setEmailError] = useState(false);
     const [numError, setNumError] = useState(false);
-    const [resendError, setResendError] = useState('');
-    const classes = signUpStyles();
-    
-    const clearInput = () => {
-        setInputData({
-            eMail: '',
-            code: ''
-        })
-    };
     
     useEffect(()=>{
-        if( inputData.eMail.length && inputData.code.length && !emailError && !numError ) {
+        if( inputData.eMail.length && inputData.password.length && !emailError && !numError ) {
             setSubmitDisable(false);
         } else {
             setSubmitDisable(true);
@@ -43,26 +33,20 @@ const Verify = () => {
         if(e.target.name === 'eMail'){
             (e.target.value === "" || emailRegex.test(e.target.value)) ? setEmailError(false) : setEmailError(true);
         };
-        if(e.target.name === 'code'){
-            (e.target.value === "" || inputData?.code?.length > 4) ? setNumError(false) : setNumError(true);
+        if(e.target.name === 'password'){
+            (e.target.value === "" || inputData?.password?.length > 4) ? setNumError(false) : setNumError(true);
         };
         setInputData({
             ...inputData,
             [e.target.name]: e.target.value
         })
     };
-    const onFormSubmit = () => {
-        dispatch(verificationAccount(inputData.eMail, inputData.code, history));
+    const onClickLoginIn = () => {
+        dispatch(userLogin(inputData.eMail, inputData.password));
         // clearInput();
     };
-    const onClickResendCode = () => {
-        if(inputData.eMail){
-            setResendError('');
-            dispatch(resendVerificationCode(inputData.eMail));
-        } else {
-            setEmailError(true);
-            setResendError('Please fill in email');
-        }
+    const onClickSignUpRedirect = () => {
+        console.log('redirect to sign up')
     };
     const inputSetting = [
         {
@@ -73,19 +57,18 @@ const Verify = () => {
             value: inputData?.eMail
         },
         {
-            name: 'code',
-            label: 'Verification Code',
+            name: 'password',
+            label: 'Password',
             required: true,
             inputError: numError ? true : false,
-            value: inputData?.code
+            value: inputData?.password
         }
     ];
 
     return (
-        <div className={ classes.signUpBodyWrapper }>
-            <div className={ classes.signUpInnerWrap }>
-                <h1>Verify Your Account</h1>
-                {resendError && <h2 className={ classes.errorText }>{resendError}</h2>}
+        <div className={ classes.loginBlockWrapper }>
+            <div className={ classes.loginBlockInnerWrap }>
+                <h1>Login</h1>
                 <div className={ classes.signUpFormWrapper }>
                     {inputSetting.map((fill, index) => 
                         <MuiInputField 
@@ -94,14 +77,14 @@ const Verify = () => {
                             onChange={ onInputChange } />
                     )}
                     
-                    <SubmitButton {...submitDisable && {disabled : submitDisable}} onClick={ onFormSubmit }/>
+                    <SubmitButton {...submitDisable && {disabled : submitDisable}} onClick={ onClickLoginIn }/>
                 </div>
                 <div className={ classes.resendCodeWrapper}>
-                    <span className={ classes.resendCode } onClick={onClickResendCode}>RESEND CODE</span>
+                    <span className={ classes.resendCode } onClick={onClickSignUpRedirect}>SIGN UP</span>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Verify;
+export default Login;

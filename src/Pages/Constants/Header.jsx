@@ -1,4 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { userIsLoggedIn } from 'States/userSlice';
+import { useHistory } from 'react-router-dom';
+import { LoginButton } from 'Components/MUI/ButtonTypes';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     AppBar,
@@ -58,6 +62,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const isLoggedIn = useSelector(userIsLoggedIn)
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -141,6 +147,46 @@ const Header = () => {
     </Menu>
   );
 
+  const SignInHeader = (
+    <div className={classes.sectionDesktop}>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <ChatIcon className={classes.iconSize} />
+          </Badge>
+        </IconButton>
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+          <Badge badgeContent={17} color="secondary">
+            <NotificationsIcon className={classes.iconSize} />
+          </Badge>
+        </IconButton>
+        <IconButton
+          edge="end"
+          aria-label="account of current user"
+          aria-controls={menuId}
+          aria-haspopup="true"
+          onClick={handleProfileMenuOpen}
+          color="inherit"
+        >
+          <AccountCircle className={classes.iconSize} />
+        </IconButton>
+      </div>
+  )
+
+  const NotSignInHeader = (
+    <div className={classes.sectionDesktop}>
+        <IconButton
+          edge="end"
+          aria-label="sign up account"
+          aria-controls={menuId}
+          aria-haspopup="true"
+          onClick={() => history.push('/signup')}
+          color="inherit"
+        >
+          <AccountCircle className={classes.iconSize} />
+        </IconButton>
+      </div>
+  )
+
   return (
     <div className={classes.headerWrapper}>
       <AppBar position="static" className={classes.root}>
@@ -157,28 +203,8 @@ const Header = () => {
             OXBNB
           </Typography>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <ChatIcon className={classes.iconSize} />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon className={classes.iconSize} />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle className={classes.iconSize} />
-            </IconButton>
-          </div>
+
+          { isLoggedIn ? SignInHeader : NotSignInHeader }
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"

@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const MuiInputField = ({
-  bgColor, 
   defaultValue,
+  value,
   required,
   type,
   name, 
@@ -29,6 +29,7 @@ const MuiInputField = ({
                 name={name}
                 variant="outlined"
                 onChange={onChange}
+                { ...value && {value: value}}
                 { ...inputError && { error: true }}
                 { ...defaultValue && {defaultValue: defaultValue}}
                 { ...onKeyPress && {onKeyPress: onKeyPress}}
