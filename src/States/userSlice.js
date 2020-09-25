@@ -84,13 +84,13 @@ export const userSignUp = ({
     const attributeList = [
         new CognitoUserAttribute({Name: 'email', Value: eMail}),
         new CognitoUserAttribute({Name: 'phone_number', Value: `+1${phoneNumber}`}),
-        new CognitoUserAttribute({Name: 'custom:isAgent', Value: picture }),
+        new CognitoUserAttribute({Name: 'custom:isAgent', Value: isAgent }),
+        new CognitoUserAttribute({Name: 'picture', Value: picture }),
         new CognitoUserAttribute({Name: 'preferred_username', Value: preferredUsername }),
         new CognitoUserAttribute({Name: 'family_name', Value: familyName }),
-        new CognitoUserAttribute({Name: 'given_name', Value: givenName }),
-        new CognitoUserAttribute({Name: 'custom:isAgent', Value: isAgent })
+        new CognitoUserAttribute({Name: 'given_name', Value: givenName })
     ];
-    console.log('attributeList--->: ', attributeList)
+    // console.log('attributeList--->: ', attributeList)
 
     userPool.signUp( eMail, password, attributeList, null, (err, result) => {
         if (err) {
@@ -117,7 +117,7 @@ export const verificationAccount = (eMail, code, history) => dispatch => {
             return;
         } else {
             alert('call result: ' + result);
-            history.push('/login');
+            history.push('/');
             // trigger user data update for giving and recieving list card Id
         }
     })

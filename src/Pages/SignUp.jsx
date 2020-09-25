@@ -17,18 +17,31 @@ const SignUp = () => {
     const dispatch = useDispatch();
     const [inputData, setInputData] = useState({isAgent: 'no'});
     const [imageURL, setImageURL] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [numError, setNumError] = useState('');
+    const [submitDisable, setSubmitDisable] = useState(true);
+    const [emailError, setEmailError] = useState(false);
+    const [numError, setNumError] = useState(false);
     const classes = signUpStyles();
     
+    useEffect(()=>{
+        if( !emailError && !numError && inputData.password ) {
+            setSubmitDisable(false);
+        } else {
+            setSubmitDisable(true);
+        }
+    },[
+        emailError,
+        numError,
+        inputData.password
+    ])
+
     const onInputChange = e => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
         const phoneNumberRegex = /^\d+$/;
-        if(e.target.name === 'eMail' && emailRegex.test(e.target.value)){
-            setEmailError(true)
+        if(e.target.name === 'eMail'){
+            (e.target.value === "" || emailRegex.test(e.target.value)) ? setEmailError(false) : setEmailError(true);
         };
-        if(e.target.name === 'phoneNumber' && phoneNumberRegex.test(e.target.value)){
-            setNumError(true)
+        if(e.target.name === 'phoneNumber'){
+            (e.target.value === "" || phoneNumberRegex.test(e.target.value)) ? setNumError(false) : setNumError(true);
         };
         setInputData({
             ...inputData,
@@ -40,8 +53,7 @@ const SignUp = () => {
             ...inputData,
             picture: imageURL
         }
-        setInputData({});
-        console.log('params----------->: ', params)
+        
         dispatch(userSignUp(params));
     };
     
@@ -50,15 +62,15 @@ const SignUp = () => {
             name: 'eMail',
             label: 'E-Mail',
             required: true,
-            inputError: false,
-            value: inputData.eMail || ''
+            inputError: emailError ? true : false,
+            value: inputData?.eMail
         },
         {
             name: 'phoneNumber',
             label: 'Phone Number',
             required: true,
-            inputError: false,
-            value: inputData.phoneNumber || ''
+            inputError: numError ? true : false,
+            value: inputData?.phoneNumber
         },
         {
             name: 'password',
@@ -66,25 +78,25 @@ const SignUp = () => {
             type: 'password',
             required: true,
             inputError: false,
-            value: inputData.password || ''
+            value: inputData?.password
         },
         {
             name: 'preferredUsername',
             label: 'Preferred Name',
             required: false,
-            value: inputData.preferredUsername || ''
+            value: inputData?.preferredUsername
         },
         {
             name: 'familyName',
             label: 'Family Name',
             required: false,
-            value: inputData.familyName || ''
+            value: inputData?.familyName
         },
         {
             name: 'givenName',
             label: 'Given Name',
             required: false,
-            value: inputData.givenName || ''
+            value: inputData?.givenName
         }
     ];
 
@@ -146,7 +158,7 @@ const SignUp = () => {
                                 }
                         </RadioGroup>
                     </FormControl>
-                    <SubmitButton onClick={ onFormSubmit }/>
+                    <SubmitButton {...submitDisable && {disabled : submitDisable}} onClick={ onFormSubmit }/>
                 </div>
             </div>
         </div>
