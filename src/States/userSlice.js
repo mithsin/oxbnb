@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import {
     CognitoUserPool,
     CognitoUserAttribute,
@@ -178,7 +177,7 @@ export const setUpNewPassword = (eMail, code, newPassword) => dispatch => {
 }
 
 // AWS User Login
-export const userLogin = ({eMail, password, history}) => dispatch => {
+export const userLogin = ({eMail, password}) => dispatch => {
     const authenticationData = {
         Username: eMail,
         Password: password,
@@ -198,7 +197,30 @@ export const userLogin = ({eMail, password, history}) => dispatch => {
             // TO DO: Set Init Data
             // TO DO: save token in Local storage
 
-            history.push('/');
+            // setUserState
+                // profilePicUrl: '',
+                // preferredUsername: '',
+                // familyName: '',
+                // givenName: '',
+                // currency: 'USD',
+                // phoneNumber: '',
+                // isAgent: false,
+                // isLoggedIn: false,
+
+            cognitoUser.getUserAttributes((err, attributes) => {
+                if (err) {
+                    alert(err.message || JSON.stringify(err));
+                    return;
+                }
+                const results = {};
+
+                  for (let attribute of attributes) {
+                    const { Name, Value } = attribute;
+                    results[Name] = Value;
+                  }
+
+                  console.log(results);
+            });
          },
         onFailure: (err) => {
             alert(err.message || JSON.stringify(err));

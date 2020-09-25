@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { CgAccount } from 'Utils/CgAccount';
 import store from 'Store/store';
 import { Provider } from 'react-redux';
 import './index.css';
@@ -10,9 +11,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router>
-        <App />
-      </Router>
+      <CgAccount >
+        <Router>
+          <App />
+        </Router>
+      </CgAccount>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

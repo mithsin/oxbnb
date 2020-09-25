@@ -44,7 +44,7 @@ const Login = () => {
         })
     };
     const onClickLoginIn = () => {
-        dispatch(userLogin(inputData.eMail, inputData.password));
+        dispatch(userLogin(inputData));
     };
     const onClickSignUpRedirect = () => {
         history.push('/signup')
