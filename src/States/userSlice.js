@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 import {
     CognitoUserPool,
     CognitoUserAttribute,
@@ -99,7 +100,26 @@ export const userSignUp = ({
         } else {
             var cognitoUser = result.user;
             alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
-            history.push('/verify-account');
+            // history.push('/verify-account');
+
+             const params = {
+                subId: result.userSub,
+                eMail: eMail,
+                isAgent: isAgent,
+                picture: picture,
+                preferredUsername: preferredUsername,
+                familyName: familyName,
+                givenName: givenName,
+                phoneNumber: `+1${phoneNumber}`
+            }
+            const url = "https://otpxaxx8rj.execute-api.us-east-1.amazonaws.com/api/user";
+            axios.post(url, params, {
+                headers: { 'Content-Type' : 'application/json' }
+                })
+                .then(res=> {
+                    console.log('signUp-res------------>: ', res);
+                })
+                .catch(error => console.log(error))
         }
     });
 };
