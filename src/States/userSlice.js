@@ -112,7 +112,7 @@ export const userSignUp = ({
                 givenName: givenName,
                 phoneNumber: `+1${phoneNumber}`
             }
-            const url = "https://otpxaxx8rj.execute-api.us-east-1.amazonaws.com/api/user";
+            const url = process.env.REACT_APP_API_GATEWAY_USER;
             axios.post(url, params, {
                 headers: { 'Content-Type' : 'application/json' }
                 })
