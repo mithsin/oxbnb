@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Login from 'Components/Blocks/Login';
+import useOnClickOutside from 'Utils/useOnClickOutside';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Avatar,
@@ -74,12 +76,16 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const loginRef = useRef(null);
+  const history = useHistory();
   const isLoggedIn = useSelector(userIsLoggedIn);
   const userName = useSelector(userUserName);
   const userImage = useSelector(userProfileImage);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [openLoginBlock, setopenLoginBlock] = useState(false);
+
+  useOnClickOutside(loginRef, () => setopenLoginBlock(false));
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -102,7 +108,7 @@ const Header = () => {
   };
 
   const onClickLogout = () => {
-    dispatch(userLogout())
+    dispatch(userLogout({history: history}))
   };
 
   const menuId = 'primary-search-account-menu';
@@ -194,7 +200,7 @@ const Header = () => {
       </div>
   );
   const NotSignInHeader = (
-    <div className={classes.sectionDesktop}>
+    <div className={classes.sectionDesktop} anchorEl={anchorEl}>
         <IconButton
           edge="end"
           aria-label="sign up account"
@@ -242,7 +248,8 @@ const Header = () => {
       {renderMobileMenu}
       {renderMenu}
       {openLoginBlock && 
-        <div 
+        <div
+          ref={loginRef}
           style={{
             width: '500px', 
             position: 'absolute', 

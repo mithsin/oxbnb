@@ -14,23 +14,24 @@ const poolData = {
 // const postURL = process.env.REACT_APP_API_GATEWAY_URL;
 const userPool = new CognitoUserPool(poolData);
 const ApiGateWayUserURL = process.env.REACT_APP_API_GATEWAY_USER;
+const initState = {
+    picture: '',
+    preferredUsername: '',
+    familyName: '',
+    givenName: '',
+    currency: 'USD',
+    phoneNumber: '',
+    isAgent: false,
+    isLoggedIn: false,
+}
 export const userSlice = createSlice({
     name: 'userState',
-    initialState: {
-        profilePicUrl: '',
-        preferredUsername: '',
-        familyName: '',
-        givenName: '',
-        currency: 'USD',
-        phoneNumber: '',
-        isAgent: false,
-        isLoggedIn: false,
-    },
+    initialState: initState,
     reducers: {
         setUserState: (state, action) => {
             return {...state, ...action.payload};
         },
-        setProfilePicUrl: (state, action) => {
+        setPicture: (state, action) => {
             state.profilePicUrl = action.payload;
         },
         setPreferredUsername: (state, action) => {
@@ -59,7 +60,7 @@ export const userSlice = createSlice({
 
 export const {
     setUserState,
-    setProfilePicUrl,
+    setPicture,
     setPreferredUsername,
     setFamilyName,
     setGivenName,
@@ -216,7 +217,6 @@ export const userLogin = ({eMail, password}) => dispatch => {
                 headers: { 'Authorization' : result.idToken.jwtToken }
             })
                 .then(res => {
-                    console.log('userLogin----------->: ', res.data)
                     dispatch(setUserState(res.data));
                     dispatch(setIsLoggedIn(true));
                 })
@@ -233,6 +233,7 @@ export const userLogout = ({history}) => dispatch => {
     if(userPool.getCurrentUser()){
         // To Do: clear init data
         userPool.getCurrentUser().signOut();
+        dispatch(setUserState(initState))
         history.push('/');
     };
 };
@@ -258,7 +259,7 @@ export const userLoginCheck = () => dispatch => {
 
 
 export const userUserName = state => state?.userState?.preferredUsername || (`${state?.userState?.familyName} ${state?.userState?.givenName}`);
-export const userProfileImage = state => state. userState.profilePicUrl;
+export const userProfileImage = state => state. userState.picture;
 export const userCognitoState = state => state.userState;
 export const userIsLoggedIn = state => state.userState.isLoggedIn;
 export const userIsAgent = state => state.userState.isAgent;
