@@ -100,7 +100,7 @@ export const userSignUp = ({
         } else {
             var cognitoUser = result.user;
             alert('user name is ' + cognitoUser.getUsername() + 'Please check your email for verification code');
-            // history.push('/verify-account');
+            history.push('/verify-account');
 
              const params = {
                 subId: result.userSub,
@@ -110,12 +110,10 @@ export const userSignUp = ({
                 preferredUsername: preferredUsername,
                 familyName: familyName,
                 givenName: givenName,
-                phoneNumber: `+1${phoneNumber}`
+                phoneNumber: phoneNumber
             }
             const url = process.env.REACT_APP_API_GATEWAY_USER;
-            axios.post(url, params, {
-                headers: { 'Content-Type' : 'application/json' }
-                })
+            axios.post(url, params)
                 .then(res=> {
                     console.log('signUp-res------------>: ', res);
                 })
