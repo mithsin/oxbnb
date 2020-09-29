@@ -259,6 +259,10 @@ export const userLoginCheck = () => dispatch => {
     } 
 };
 
+
+
+export const userUserName = state => state?.userState?.preferredUsername || (`${state?.userState?.familyName} ${state?.userState?.givenName}`);
+export const userProfileImage = state => state. userState.profilePicUrl;
 export const userCognitoState = state => state.userState;
 export const userIsLoggedIn = state => state.userState.isLoggedIn;
 export const userIsAgent = state => state.userState.isAgent;

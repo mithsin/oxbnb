@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userIsLoggedIn, userLoginCheck } from 'States/userSlice';
+import { userUserName, userProfileImage, userIsLoggedIn, userLoginCheck } from 'States/userSlice';
 import Login from 'Components/Blocks/Login';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+    Avatar,
     AppBar,
-    Toolbar,
     Badge,
     IconButton,
+    Toolbar,
     Typography,
     MenuItem,
     Menu
@@ -58,12 +59,18 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  orange: {
+    color: "#FFF",
+    backgroundColor: "#FFA500",
+  },
 }));
 
 const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector(userIsLoggedIn)
+  const isLoggedIn = useSelector(userIsLoggedIn);
+  const userName = useSelector(userUserName);
+  const userImage = useSelector(userProfileImage);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [openLoginBlock, setopenLoginBlock] = useState(false);
@@ -167,11 +174,13 @@ const Header = () => {
           onClick={handleProfileMenuOpen}
           color="inherit"
         >
-          <AccountCircle className={classes.iconSize} />
+          { userImage
+              ? <Avatar alt={`${userName}-img`} src={`${userImage}`} />
+              : <Avatar className={classes.orange}>{userName.substring(0,1).toUpperCase()}</Avatar>
+          }
         </IconButton>
       </div>
-  )
-
+  );
   const NotSignInHeader = (
     <div className={classes.sectionDesktop}>
         <IconButton
