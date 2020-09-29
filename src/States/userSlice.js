@@ -232,13 +232,9 @@ export const userLogin = ({eMail, password}) => dispatch => {
 export const userLogout = ({history}) => dispatch => {
     if(userPool.getCurrentUser()){
         // To Do: clear init data
-
         userPool.getCurrentUser().signOut();
-        history.push('/login');
-    } else {
-        console.log("user not available")
-        alert("you are not login yet")
-    }
+        history.push('/');
+    };
 };
 
 // AWS Cognito Get User Data

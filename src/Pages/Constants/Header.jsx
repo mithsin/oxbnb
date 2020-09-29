@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { userUserName, userProfileImage, userIsLoggedIn, userLoginCheck } from 'States/userSlice';
 import Login from 'Components/Blocks/Login';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -13,6 +12,13 @@ import {
     MenuItem,
     Menu
 } from '@material-ui/core';
+import { 
+  userUserName, 
+  userProfileImage, 
+  userIsLoggedIn, 
+  userLoginCheck, 
+  userLogout 
+} from 'States/userSlice';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -94,6 +100,11 @@ const Header = () => {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const onClickLogout = () => {
+    dispatch(userLogout())
+  };
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -108,6 +119,7 @@ const Header = () => {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
     </Menu>
   );
 
