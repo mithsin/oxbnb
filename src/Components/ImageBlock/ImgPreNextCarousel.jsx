@@ -35,11 +35,11 @@ const ImgPreNextCarousel = ({imgSrc=[]}) => {
     return(
         <div className={classes.carouselWrapper}>
             <div className={classes.prevBtn} onClick={onClickNext}>
-                <FontAwesomeIcon icon={faChevronLeft} className="fa-5x"/>
+                <FontAwesomeIcon icon={faChevronLeft} className="fa-4x"/>
             </div>
             <div className={classes.imageBlock} style={backgroundImgSrc}></div>
             <div className={classes.nextBtn} onClick={onClickPrev}>
-                <FontAwesomeIcon icon={faChevronRight} className="fa-5x"/>
+                <FontAwesomeIcon icon={faChevronRight} className="fa-4x"/>
             </div>
         </div>
     );

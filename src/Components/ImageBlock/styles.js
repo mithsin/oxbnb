@@ -8,9 +8,13 @@ export const useStyles = createUseStyles({
     },
     imageBlock: {
         width: '80%',
+        maxWidth: '1200px',
         minHeight: '400px',
         height: '60vh',
-        margin: 'auto'
+        margin: 'auto',
+        '@media only screen and (max-width: 769px)': {
+            width: '100%'
+        }
     },
     prevBtn: {
         position: 'absolute',
@@ -23,5 +27,6 @@ export const useStyles = createUseStyles({
         top: '50%',
         right: '50px',
         backgroundColor: '#ffffffa1'
-    }
+    },
+    
 })
