@@ -9,7 +9,6 @@ export const useStyles = createUseStyles({
     imageBlock: {
         width: '80%',
         maxWidth: '1200px',
-        minHeight: '400px',
         height: '60vh',
         margin: 'auto',
         '@media only screen and (max-width: 769px)': {
