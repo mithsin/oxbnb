@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { userIsLoggedIn } from 'States/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { userIsLoggedIn, userLoginCheck } from 'States/userSlice';
 import Login from 'Components/Blocks/Login';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(userIsLoggedIn)
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -198,7 +199,7 @@ const Header = () => {
           >
             <MenuIcon className={classes.iconSize} />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap onClick={()=> dispatch(userLoginCheck())}>
             OXBNB
           </Typography>
           <div className={classes.grow} />

@@ -13,7 +13,7 @@ const poolData = {
 };
 // const postURL = process.env.REACT_APP_API_GATEWAY_URL;
 const userPool = new CognitoUserPool(poolData);
-
+const ApiGateWayUserURL = process.env.REACT_APP_API_GATEWAY_USER;
 export const userSlice = createSlice({
     name: 'userState',
     initialState: {
@@ -112,8 +112,8 @@ export const userSignUp = ({
                 givenName: givenName,
                 phoneNumber: phoneNumber
             }
-            const url = process.env.REACT_APP_API_GATEWAY_USER;
-            axios.post(url, params)
+            
+            axios.post(ApiGateWayUserURL, params)
                 .then(res=> {
                     console.log('signUp-res------------>: ', res);
                 })
@@ -212,33 +212,15 @@ export const userLogin = ({eMail, password}) => dispatch => {
 
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: (result) => {
-            // TO DO: Set Init Data
-            // TO DO: save token in Local storage
-
-            // setUserState
-                // profilePicUrl: '',
-                // preferredUsername: '',
-                // familyName: '',
-                // givenName: '',
-                // currency: 'USD',
-                // phoneNumber: '',
-                // isAgent: false,
-                // isLoggedIn: false,
-
-            cognitoUser.getUserAttributes((err, attributes) => {
-                if (err) {
-                    alert(err.message || JSON.stringify(err));
-                    return;
-                }
-                const results = {};
-
-                  for (let attribute of attributes) {
-                    const { Name, Value } = attribute;
-                    results[Name] = Value;
-                  }
-
-                  console.log(results);
-            });
+            axios.get(`${ApiGateWayUserURL}?subId=${result.idToken.payload.sub}`, {
+                headers: { 'Authorization' : result.idToken.jwtToken }
+            })
+                .then(res => {
+                    console.log('userLogin----------->: ', res.data)
+                    dispatch(setUserState(res.data));
+                    dispatch(setIsLoggedIn(true));
+                })
+                .catch(error => console.log('get user error: ', error))
          },
         onFailure: (err) => {
             alert(err.message || JSON.stringify(err));
@@ -261,19 +243,21 @@ export const userLogout = ({history}) => dispatch => {
 
 // AWS Cognito Get User Data
 export const userLoginCheck = () => dispatch => {
-    if (userPool.getCurrentUser() != null) {
+    if (userPool.getCurrentUser() !== null) {
         userPool.getCurrentUser().getSession((err, session) => {
             if(err){console.log('userPool.getCurrentUser() err---->', err)};
             const idToken = session?.getIdToken().getJwtToken();
+            axios.get(`${ApiGateWayUserURL}?subId=${session.idToken.payload.sub}`, {
+                headers: { 'Authorization' : idToken }
+            })
+                .then(res => {
+                    dispatch(setUserState(res.data));
+                    dispatch(setIsLoggedIn(true));
+                })
+                .catch(error => console.log('get user error: ', error))
           });
     } 
 };
-
-// AWS getSession varify user and attributes
-// export const retriveUserAttributeSl = () => dispatch => {
-
-// };
-
 
 export const userCognitoState = state => state.userState;
 export const userIsLoggedIn = state => state.userState.isLoggedIn;

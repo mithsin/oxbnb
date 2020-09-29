@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { CgAccount } from 'Utils/CgAccount';
+import UserStatusProvider from 'PageRouter/UserStatusProvider';
 import store from 'Store/store';
 import { Provider } from 'react-redux';
 import './index.css';
@@ -11,11 +11,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <CgAccount >
+      <UserStatusProvider>
         <Router>
           <App />
         </Router>
-      </CgAccount>
+      </UserStatusProvider>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

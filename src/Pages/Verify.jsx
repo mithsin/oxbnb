@@ -19,13 +19,6 @@ const Verify = () => {
     const [resendError, setResendError] = useState('');
     const classes = signUpStyles();
     
-    const clearInput = () => {
-        setInputData({
-            eMail: '',
-            code: ''
-        })
-    };
-    
     useEffect(()=>{
         if( inputData.eMail.length && inputData.code.length && !emailError && !numError ) {
             setSubmitDisable(false);
