@@ -67,11 +67,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   loginBlock: {
-    width: '500px', 
+    width: '100%',
+    maxWidth: '500px', 
     position: 'absolute', 
     top: '0', 
     right: '0',
-    zIndex: 9998
+    zIndex: 9998,
   },
   mobileHide: {
     [theme.breakpoints.up('md')]: {
@@ -157,7 +158,7 @@ const Header = () => {
 
   useOnClickOutside(loginRef, () => setopenLoginBlock(false));
   useOnClickOutside(profileRef, () => setOpenProfileMenu(false));
-  console.log('openProfileMenu-->: ', openProfileMenu)
+
   const OpenProfileMenuToggle = () => {
     setOpenProfileMenu(!openProfileMenu)
   }
