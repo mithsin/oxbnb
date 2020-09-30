@@ -11,7 +11,8 @@ import {
     IconButton,
     Toolbar,
     Typography,
-    MenuItem
+    MenuItem,
+    Menu
 } from '@material-ui/core';
 import { 
   userUserName, 
@@ -25,6 +26,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import ChatIcon from '@material-ui/icons/Chat';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   headerWrapper: {
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 9998
   },
   mobileHide: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
   },
@@ -86,107 +88,87 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFF",
     backgroundColor: "#FFA500",
   },
-  profileBlock: {
-    width: "100%",
-    border: "1px dotted gray",
-    maxWidth: "300px",
-    background: "#ffffff",
-    padding: "0",
-    position: "absolute",
-    top: "36px",
-    right: "16px",
-    boxShadow: "0px 3px 6px 1px #bbb",
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
-    "& li": {
-      padding: "20px",
-      borderBottom: '1px solid #bbb',
-    }
-  },
-  mobileProfileBlock: {
-    width: "100%",
-    border: "1px dotted gray",
-    maxWidth: "299px",
-    background: "#ffffff",
-    padding: "0",
-    position: "absolute",
-    top: "0px",
-    right: "0px",
-    boxShadow: "0px 3px 6px 1px #bbb",
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-    "& li": {
-      padding: "20px",
-      borderBottom: '1px solid #bbb',
-    }
-  },
-  mobileMenuBlock: {
-    width: "100%",
-    border: "1px dotted gray",
-    maxWidth: "300px",
-    background: "#ffffff",
-    padding: "0",
-    position: "absolute",
-    top: "36px",
-    right: "0px",
-    boxShadow: "0px 3px 6px 1px #bbb",
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  notLoginBlock: {
-    display: "flex"
-  },
 }));
 
 const Header = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const loginRef = useRef(null);
-  const profileRef = useRef(null);
   const history = useHistory();
   const isLoggedIn = useSelector(userIsLoggedIn);
   const userName = useSelector(userUserName);
   const userImage = useSelector(userProfileImage);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [openLoginBlock, setopenLoginBlock] = useState(false);
-  const [openProfileMenu, setOpenProfileMenu] = useState(false);
-  const [openMobileMenu, setOpenMobileMenu] = useState(false);
-  const [openMobileProfile, setOpenMobileProfile] = useState(false);
 
   useOnClickOutside(loginRef, () => setopenLoginBlock(false));
-  useOnClickOutside(profileRef, () => setOpenProfileMenu(false));
-  console.log('openProfileMenu-->: ', openProfileMenu)
-  const OpenProfileMenuToggle = () => {
-    setOpenProfileMenu(!openProfileMenu)
-  }
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMobileMenuClose = () => {
+    setMobileMoreAnchorEl(null);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
 
   const onClickLogout = () => {
     dispatch(userLogout({history: history}))
   };
 
-  const onClickMobileMenu = () => {
-    if(openMobileMenu && openMobileProfile){
-      setOpenMobileProfile(false)
-    }
-    setOpenMobileMenu(!openMobileMenu)
-  }
-
   const menuId = 'primary-search-account-menu';
-  const ProfileMenu = ({mobileTrigger}) => (
-    <ul
-      ref={loginRef} 
-      className={ mobileTrigger ? classes.mobileProfileBlock : classes.profileBlock }>
-      <MenuItem onClick={()=> console.log('open profile block')}>Profile</MenuItem>
-      <MenuItem onClick={()=> console.log('open profile block')}>My account</MenuItem>
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      style={{ top: '54px'}}
+      onClose={handleMenuClose}
+    >
+      <MenuItem className={ classes.closeIcon }>
+        <CloseIcon
+          fontSize="small"
+          onClick={handleMenuClose} />
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
       <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
-    </ul>
+    </Menu>
   );
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
-  const mobileMenu = (
-    <ul className={ classes.mobileMenuBlock }>
+  const renderMobileMenu = (
+    <Menu
+      className={classes.root, classes.mobileHide}
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      style={{ top: '70px'}}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem className={ classes.closeIcon }>
+        <CloseIcon
+          fontSize="small"
+          onClick={handleMobileMenuClose} />
+      </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
@@ -203,26 +185,18 @@ const Header = () => {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={()=> setOpenMobileProfile(!openMobileProfile)}>
+      <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
         >
-          { userImage
-              ? <Avatar alt={`${userName}-img`} src={`${userImage}`} />
-              : <Avatar className={classes.orange}>{userName.substring(0,1).toUpperCase()}</Avatar>
-          }
+          <AccountCircle className={classes.iconSize} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
-      { openMobileProfile &&
-        <MenuItem style={{overflow: 'visible'}}>
-          <ProfileMenu mobileTrigger={true} />
-        </MenuItem>
-      }
-    </ul>
+    </Menu>
   );
 
   const SignInHeader = (
@@ -242,7 +216,7 @@ const Header = () => {
           aria-label="account of current user"
           aria-controls={menuId}
           aria-haspopup="true"
-          onClick={OpenProfileMenuToggle}
+          onClick={handleProfileMenuOpen}
           color="inherit"
         >
           { userImage
@@ -253,7 +227,7 @@ const Header = () => {
       </div>
   );
   const NotSignInHeader = (
-    <div className={classes.notLoginBlock} >
+    <div className={classes.sectionDesktop} anchorEl={anchorEl}>
         <IconButton
           edge="end"
           aria-label="sign up account"
@@ -272,7 +246,8 @@ const Header = () => {
       ref={loginRef}
       className={classes.loginBlock}>
         <Login 
-          setopenLoginBlock={setopenLoginBlock} />
+          setopenLoginBlock={setopenLoginBlock} 
+          setMobileMoreAnchorEl={setMobileMoreAnchorEl} />
     </div>
   );
 
@@ -294,23 +269,22 @@ const Header = () => {
           <div className={classes.grow} />
 
           { isLoggedIn ? SignInHeader : NotSignInHeader }
-          { isLoggedIn &&
           <div className={classes.sectionMobile}>
             <IconButton
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={onClickMobileMenu}
+              onClick={handleMobileMenuOpen}
               color="inherit"
             >
               <MoreIcon className={classes.iconSize} />
             </IconButton>
-          </div>}
+          </div>
         </Toolbar>
       </AppBar>
-      { isLoggedIn && openMobileMenu && mobileMenu}
-      { isLoggedIn && openProfileMenu && <ProfileMenu mobileTrigger={false}/> }
-      { openLoginBlock && LoginTemp }
+      {renderMobileMenu}
+      {renderMenu}
+      {openLoginBlock && LoginTemp}
     </div>
   );
 }

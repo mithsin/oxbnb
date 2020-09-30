@@ -1,10 +1,10 @@
 import React from "react";
 import { MuiButton } from "Components/MUI";
 
-const SubmitButton = ({disabled, onClick}) => {
+const SubmitButton = ({disabled, onClick, label=null}) => {
     return (
         <MuiButton 
-            label="SUBMIT"
+            label={!label ? "SUBMIT" : label}
             props={{
                 color: "black",
                 bgColor: "#3f51b5",

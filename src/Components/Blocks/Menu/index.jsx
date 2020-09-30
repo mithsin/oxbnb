@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userLogin } from 'States/userSlice';
 import { useHistory } from 'react-router-dom';
 import { signUpStyles } from './styles';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
 import CloseIcon from '@material-ui/icons/Close';
-import { userIsLoggedIn } from 'States/userSlice';
 
-const Login = ({setopenLoginBlock, setProfileBlock}) => {
+const Menu = ({setopenLoginBlock, setMobileMoreAnchorEl}) => {
     const dispatch = useDispatch();
-    const isLoggedIn = useSelector(userIsLoggedIn);
     const history = useHistory();
     const classes = signUpStyles();
     const [inputData, setInputData] = useState({
@@ -20,7 +18,6 @@ const Login = ({setopenLoginBlock, setProfileBlock}) => {
     const [submitDisable, setSubmitDisable] = useState(true);
     const [emailError, setEmailError] = useState(false);
     const [numError, setNumError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false)
     
     useEffect(()=>{
         if( inputData.eMail.length && inputData.password.length && !emailError && !numError ) {
@@ -33,11 +30,6 @@ const Login = ({setopenLoginBlock, setProfileBlock}) => {
         numError,
         inputData
     ])
-
-    useEffect(()=>{
-        isLoggedIn && setopenLoginBlock(false);
-        isLoggedIn && setIsLoading(false);
-    },[isLoggedIn]);
 
     const onInputChange = e => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -53,8 +45,8 @@ const Login = ({setopenLoginBlock, setProfileBlock}) => {
         })
     };
     const onClickLoginIn = () => {
-        // setProfileBlock(false);
-        setIsLoading(true);
+        setMobileMoreAnchorEl(false);
+        setopenLoginBlock(false);
         dispatch(userLogin(inputData));
     };
     const onClickSignUpRedirect = () => {
@@ -82,7 +74,7 @@ const Login = ({setopenLoginBlock, setProfileBlock}) => {
         <div className={ classes.loginBlockWrapper }>
             <div className={ classes.loginBlockInnerWrap }>
                 <CloseIcon
-                    fontSize="large"
+                fontSize="large"
                     className={ classes.closeIcon }
                     onClick={()=> setopenLoginBlock(false)} />
                 <h1>Login</h1>
@@ -93,21 +85,14 @@ const Login = ({setopenLoginBlock, setProfileBlock}) => {
                             { ...fill }
                             onChange={ onInputChange } />
                     )}
-                    <SubmitButton 
-                        {...submitDisable && {disabled : submitDisable}}
-                        {...isLoading && {label : "Loging in..."}}
-                        onClick={ onClickLoginIn }/>
+                    <SubmitButton {...submitDisable && {disabled : submitDisable}} onClick={ onClickLoginIn }/>
                 </div>
                 <div className={ classes.routeLinkWrapper}>
-                    <span 
-                        className={ classes.signUp } 
-                        onClick={onClickSignUpRedirect}>
-                            SIGN UP
-                    </span>
+                    <span className={ classes.signUp } onClick={onClickSignUpRedirect}>SIGN UP</span>
                 </div>
             </div>
         </div>
     );
 }
 
-export default Login;
+export default Menu;

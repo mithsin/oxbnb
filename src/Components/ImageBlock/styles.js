@@ -19,13 +19,15 @@ export const useStyles = createUseStyles({
         position: 'absolute',
         top: '50%',
         left: '50px',
-        backgroundColor: '#ffffffa1'
+        backgroundColor: '#ffffff33',
+        borderRadius: '6px',
     },
     nextBtn: {
         position: 'absolute',
         top: '50%',
         right: '50px',
-        backgroundColor: '#ffffffa1'
+        backgroundColor: '#ffffff33',
+        borderRadius: '6px',
     },
     
 })
