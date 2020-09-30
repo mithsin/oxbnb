@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { imageUploadStyles } from './styles';
 import axios from 'axios';
 
 const ImageUpload = ({setImageURL}) => {
+    const classes = imageUploadStyles();
     const [image, setImage] = useState('');
     const [loading, setLoading] = useState(false);
     
@@ -27,14 +29,8 @@ const ImageUpload = ({setImageURL}) => {
 return (
     <div 
         id="dropbox" 
-        style={{
-            border: '4px dashed #ccc',
-            padding: '16px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            margin: '16px 0',
-        }}>
-        <div style={{ flex: "1 0 50%"}}>
+        className={ classes.dropBoxWrapper }>
+        <div className={ classes.dropBoxSplit }>
             { loading ? <h3>Uploading...</h3> : <h3>Upload Image</h3> }
             <input
                 type="file"
@@ -42,7 +38,7 @@ return (
                 placeholder="Upload an image"
                 onChange={ uploadImage }/>
         </div>
-        <div style={{ flex: "1 0 50%"}}>
+        <div className={ classes.dropBoxSplit }>
             <img src={ image } alt={ image } style={{ width: "100px" }} />
         </div>
     </div>

@@ -12,6 +12,9 @@ export const signUpStyles = createUseStyles({
         display: 'flex',
         justifyContent: 'center',
         paddingTop: '100px',
+        '@media only screen and (max-width: 769px)': {
+            margin: '0 16px',
+        }
     },
     signUpInnerWrap: {
         width: '100%',
