@@ -6,7 +6,7 @@ import { signUpStyles } from './styles';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
 
-const Login = () => {
+const Login = ({setopenLoginBlock}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = signUpStyles();
@@ -44,6 +44,7 @@ const Login = () => {
         })
     };
     const onClickLoginIn = () => {
+        setopenLoginBlock(false);
         dispatch(userLogin(inputData));
     };
     const onClickSignUpRedirect = () => {

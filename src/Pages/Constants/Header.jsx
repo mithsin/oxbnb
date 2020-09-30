@@ -165,7 +165,10 @@ const Header = () => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle className={classes.iconSize} />
+          { userImage
+              ? <Avatar alt={`${userName}-img`} src={`${userImage}`} />
+              : <Avatar className={classes.orange}>{userName.substring(0,1).toUpperCase()}</Avatar>
+          }
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -212,7 +215,18 @@ const Header = () => {
           <AccountCircle className={classes.iconSize} />
         </IconButton>
       </div>
-  )
+  );
+  const LoginTemp = (
+    <div
+      ref={loginRef}
+      style={{
+        maxWidth: '500px',
+        width: '100%', 
+        position: 'absolute', 
+        top: '0', 
+        right: '0'
+      }}><Login setopenLoginBlock={setopenLoginBlock}/></div>
+  );
 
   return (
     <div className={classes.headerWrapper}>
@@ -237,7 +251,7 @@ const Header = () => {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
+              onClick={ isLoggedIn ? handleMobileMenuOpen : setopenLoginBlock }
               color="inherit"
             >
               <MoreIcon className={classes.iconSize} />
@@ -245,17 +259,9 @@ const Header = () => {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      {openLoginBlock && 
-        <div
-          ref={loginRef}
-          style={{
-            width: '500px', 
-            position: 'absolute', 
-            top: '0', 
-            right: '0'
-          }}><Login /></div>}
+      { renderMobileMenu }
+      { renderMenu }
+      { openLoginBlock && LoginTemp }
     </div>
   );
 }
