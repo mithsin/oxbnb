@@ -67,6 +67,17 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  loginBlock: {
+    zIndex: 9998,
+    maxWidth: '500px',
+    width: '100%', 
+    position: 'absolute', 
+    top: '0', 
+    right: '0',
+    // [theme.breakpoints.down('sm')]: {
+    //   top: '50px',
+    // },
+  },
   orange: {
     color: "#FFF",
     backgroundColor: "#FFA500",
@@ -108,7 +119,8 @@ const Header = () => {
   };
 
   const onClickLogout = () => {
-    dispatch(userLogout({history: history}))
+    handleMenuClose();
+    dispatch(userLogout({history: history}));
   };
 
   const menuId = 'primary-search-account-menu';
@@ -219,13 +231,11 @@ const Header = () => {
   const LoginTemp = (
     <div
       ref={loginRef}
-      style={{
-        maxWidth: '500px',
-        width: '100%', 
-        position: 'absolute', 
-        top: '0', 
-        right: '0'
-      }}><Login setopenLoginBlock={setopenLoginBlock}/></div>
+      className={classes.loginBlock}>
+        <Login 
+          setopenLoginBlock={setopenLoginBlock} 
+          setMobileMoreAnchorEl={setMobileMoreAnchorEl} />
+    </div>
   );
 
   return (

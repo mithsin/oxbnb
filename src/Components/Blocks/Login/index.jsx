@@ -5,8 +5,9 @@ import { useHistory } from 'react-router-dom';
 import { signUpStyles } from './styles';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { MuiInputField } from 'Components/MUI';
+import CloseIcon from '@material-ui/icons/Close';
 
-const Login = ({setopenLoginBlock}) => {
+const Login = ({setopenLoginBlock, setMobileMoreAnchorEl}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = signUpStyles();
@@ -44,6 +45,7 @@ const Login = ({setopenLoginBlock}) => {
         })
     };
     const onClickLoginIn = () => {
+        setMobileMoreAnchorEl(false);
         setopenLoginBlock(false);
         dispatch(userLogin(inputData));
     };
@@ -71,6 +73,10 @@ const Login = ({setopenLoginBlock}) => {
     return (
         <div className={ classes.loginBlockWrapper }>
             <div className={ classes.loginBlockInnerWrap }>
+                <CloseIcon
+                fontSize="large"
+                    className={ classes.closeIcon }
+                    onClick={()=> setopenLoginBlock(false)} />
                 <h1>Login</h1>
                 <div className={ classes.signUpFormWrapper }>
                     {inputSetting.map((fill, index) => 

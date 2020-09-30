@@ -5,12 +5,18 @@ export const signUpStyles = createUseStyles({
         width: '100%',
         maxWidth: '500px',
         border: '1px dotted gray',
-        background: '#ffffffb3',
+        background: '#ffffff',
     },
     loginBlockInnerWrap: {
         margin: '16px',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        position: 'relative'
+    },
+    closeIcon: {
+        position: 'absolute',
+        top: '24px',
+        right: '16px',
     },
     signUpFormWrapper: {
         display: 'flex',
