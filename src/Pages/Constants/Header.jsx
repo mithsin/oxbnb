@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Login from 'Components/Blocks/Login';
+import Profile from 'Components/Blocks/Profile';
 import useOnClickOutside from 'Utils/useOnClickOutside';
 import { useHeaderStyles } from './styles';
 import {
@@ -27,12 +28,14 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import ChatIcon from '@material-ui/icons/Chat';
 
 
-
 const Header = () => {
   const classes = useHeaderStyles();
   const dispatch = useDispatch();
   const loginRef = useRef(null);
   const profileRef = useRef(null);
+  const profileRefSub = useRef(null);
+  const mobileProfileRef = useRef(null);
+  const mobileProfileRefSub = useRef(null);
   const history = useHistory();
   const isLoggedIn = useSelector(userIsLoggedIn);
   const userName = useSelector(userUserName);
@@ -41,9 +44,12 @@ const Header = () => {
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openMobileProfile, setOpenMobileProfile] = useState(false);
+  const [openProfilBlock, setOpenProfilBlock] = useState(false);
 
   useOnClickOutside(loginRef, () => setopenLoginBlock(false));
-  useOnClickOutside(profileRef, () => setOpenProfileMenu(false));
+  useOnClickOutside(profileRef, () => setOpenProfileMenu(false), profileRefSub);
+  useOnClickOutside(mobileProfileRef, () => setOpenMobileMenu(false), mobileProfileRefSub);
+
 
   const OpenProfileMenuToggle = () => {
     setOpenProfileMenu(!openProfileMenu)
@@ -63,9 +69,9 @@ const Header = () => {
   const menuId = 'primary-search-account-menu';
   const ProfileMenu = ({mobileTrigger}) => (
     <ul
-      ref={loginRef} 
+      ref={profileRef} 
       className={ mobileTrigger ? classes.mobileProfileBlock : classes.profileBlock }>
-      <MenuItem onClick={()=> console.log('open profile block')}>Profile</MenuItem>
+      <MenuItem onClick={()=> {setOpenProfilBlock(!openProfilBlock); onClickMobileMenu()}}>Profile</MenuItem>
       <MenuItem onClick={()=> console.log('open profile block')}>My account</MenuItem>
       <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
     </ul>
@@ -73,7 +79,7 @@ const Header = () => {
 
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const mobileMenu = (
-    <ul className={ classes.mobileMenuBlock }>
+    <ul ref={mobileProfileRef} className={ classes.mobileMenuBlock }>
       <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
@@ -133,8 +139,8 @@ const Header = () => {
           color="inherit"
         >
           { userImage
-              ? <Avatar alt={`${userName}-img`} src={`${userImage}`} />
-              : <Avatar className={classes.orange}>{userName.substring(0,1).toUpperCase()}</Avatar>
+              ? <Avatar ref={profileRefSub} alt={`${userName}-img`} src={`${userImage}`} />
+              : <Avatar ref={profileRefSub} className={classes.orange}>{userName.substring(0,1).toUpperCase()}</Avatar>
           }
         </IconButton>
       </div>
@@ -184,6 +190,7 @@ const Header = () => {
           { isLoggedIn &&
           <div className={classes.sectionMobile}>
             <IconButton
+              ref={mobileProfileRefSub}
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
@@ -198,6 +205,7 @@ const Header = () => {
       { isLoggedIn && openMobileMenu && mobileMenu}
       { isLoggedIn && openProfileMenu && <ProfileMenu mobileTrigger={false}/> }
       { openLoginBlock && LoginTemp }
+      { openProfilBlock && <Profile setCloseUpdate={setOpenProfilBlock} /> }
     </div>
   );
 }
