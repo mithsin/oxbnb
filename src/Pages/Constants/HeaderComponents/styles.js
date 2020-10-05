@@ -74,4 +74,10 @@ export const useMenuBlockStyles = makeStyles((theme) => ({
   ListText: {
     fontSize: "1.5rem"
   },
+  menuList: {
+    padding: "16px",
+  },
+  menuHeader: {
+    marginBottom: "36px",
+  }
 }));

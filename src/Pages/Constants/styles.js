@@ -1,8 +1,13 @@
 import { createUseStyles } from 'react-jss'
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useStyles = createUseStyles({
-    
+export const useCustomStyles = createUseStyles({
+  headerWrapper: {
+    paddingTop: "2rem",
+    position: "fixed",
+    width: "100%",
+    zIndex: "9999"
+  },
 });
 
 export const useHeaderStyles = makeStyles((theme) => ({
@@ -15,8 +20,8 @@ export const useHeaderStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
-  root: {
-    backgroundColor: "#ffffff00",
+  AppBar: {
+    backgroundColor: "#ffffff00 !important",
     color: "#313131",
     boxShadow: 'none',
     position: 'relative'

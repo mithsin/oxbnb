@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Button,
@@ -15,24 +16,39 @@ import CloseBar from 'Components/Utils/CloseBar';
 const MenuBlock = ({openMenuBlock, setOpenMenuBlock}) => {
   const dispatch = useDispatch();
   const classes = useMenuBlockStyles();
+  const history = useHistory();
 
+  const menuList=[{
+    title: "SHORT TERM RENT",
+    link: "/bnb-rent"
+  },{ 
+    title: "LONG TERM RENT",
+    link: '/long-term-rent'
+  },{
+    title: "HOME FOR SALE",
+    link: "/for-sale"
+  }]
   return (
     <Slide direction="right" in={openMenuBlock} mountOnEnter unmountOnExit>
       <div className={ classes.MenuWrapper } >
         <List className={classes.MenuUl}>
-          <ListItem>
+          <ListItem className={classes.menuHeader}>
               <span className={classes.Title}>MENU LIST</span> 
               <CloseBar setClose={setOpenMenuBlock}/>
           </ListItem>
-          <MenuItem>
-              <span className={classes.ListText}>list 1</span>
-          </MenuItem>
-          <MenuItem>
-              <span className={classes.ListText}>list 2</span>
-          </MenuItem>
-          <MenuItem>
-              <span className={classes.ListText}>list 3</span>
-          </MenuItem>
+          {
+            menuList.map((type, index) => {
+              return(
+                <MenuItem className={classes.menuList}>
+                  <span 
+                    className={classes.ListText}
+                    onClick={()=> history.push(type.link)}>
+                      { type.title }
+                  </span>
+                </MenuItem>
+              )
+            })
+          }
         </List>
       </div>
     </Slide>

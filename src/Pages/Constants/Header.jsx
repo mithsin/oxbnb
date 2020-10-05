@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Login from 'Components/Blocks/Login';
 import { ProfileBlock, MenuBlock } from 'Pages/Constants/HeaderComponents';
 import useOnClickOutside from 'Utils/useOnClickOutside';
-import { useHeaderStyles } from './styles';
+import { useHeaderStyles, useCustomStyles } from './styles';
 import {
     Avatar,
     AppBar,
@@ -30,6 +30,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 const Header = () => {
   const classes = useHeaderStyles();
+  const custom = useCustomStyles();
   const dispatch = useDispatch();
   const loginRef = useRef(null);
   const profileRef = useRef(null);
@@ -84,22 +85,22 @@ const Header = () => {
   const mobileMenuId = 'primary-search-account-menu-mobile';
   const mobileMenu = (
     <ul ref={mobileProfileRef} className={ classes.mobileMenuBlock }>
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <ChatIcon className={classes.iconSize} />
           </Badge>
         </IconButton>
         <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
+      </MenuItem> */}
+      {/* <MenuItem>
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={11} color="secondary">
             <NotificationsIcon className={classes.iconSize} />
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={()=> setOpenMobileProfile(!openMobileProfile)}>
         <IconButton
           aria-label="account of current user"
@@ -124,16 +125,16 @@ const Header = () => {
 
   const SignInHeader = (
     <div className={classes.sectionDesktop}>
-        <IconButton aria-label="show 4 new mails" color="inherit">
+        {/* <IconButton aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="secondary">
             <ChatIcon className={classes.iconSize} />
           </Badge>
-        </IconButton>
-        <IconButton aria-label="show 17 new notifications" color="inherit">
+        </IconButton> */}
+        {/* <IconButton aria-label="show 17 new notifications" color="inherit">
           <Badge badgeContent={17} color="secondary">
             <NotificationsIcon className={classes.iconSize} />
           </Badge>
-        </IconButton>
+        </IconButton> */}
         <IconButton
           edge="end"
           aria-label="account of current user"
@@ -174,8 +175,8 @@ const Header = () => {
   );
 
   return (
-    <div className={classes.headerWrapper}>
-      <AppBar position="static" className={classes.root}>
+    <div className={custom.headerWrapper}>
+      <AppBar position="static" className={classes.AppBar}>
         <Toolbar>
           <IconButton
             edge="start"
