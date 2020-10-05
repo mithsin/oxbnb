@@ -39,10 +39,10 @@ export const useHeaderStyles = makeStyles((theme) => ({
     fontSize: 40
   },
   sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
+    // display: 'none',
+    // [theme.breakpoints.up('md')]: {
       display: 'flex',
-    },
+    // },
   },
   sectionMobile: {
     display: 'flex',
@@ -81,9 +81,9 @@ export const useHeaderStyles = makeStyles((theme) => ({
     top: "88px",
     right: "16px",
     boxShadow: "0px 3px 6px 1px #bbb",
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
+    // [theme.breakpoints.down('sm')]: {
+    //   display: 'none',
+    // },
     "& li": {
       padding: "20px",
       borderBottom: '1px solid #bbb',

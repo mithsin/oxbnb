@@ -75,7 +75,9 @@ const Header = () => {
   const ProfileMenu = ({mobileTrigger}) => (
     <ul
       ref={profileRef} 
-      className={ mobileTrigger ? classes.mobileProfileBlock : classes.profileBlock }>
+      // mobile and desktop
+      // className={ mobileTrigger ? classes.mobileProfileBlock : classes.profileBlock }
+      className={ classes.profileBlock }>
       <MenuItem onClick={()=> {setOpenProfilBlock(!openProfilBlock); onClickMobileMenu()}}>Profile</MenuItem>
       <MenuItem onClick={()=> console.log('open profile block')}>My account</MenuItem>
       <MenuItem onClick={onClickLogout}>LOGOUT</MenuItem>
@@ -193,7 +195,7 @@ const Header = () => {
           <div className={classes.grow} />
 
           { isLoggedIn ? SignInHeader : NotSignInHeader }
-          { isLoggedIn &&
+          {/* { isLoggedIn &&
           <div className={classes.sectionMobile}>
             <IconButton
               ref={mobileProfileRefSub}
@@ -205,11 +207,11 @@ const Header = () => {
             >
               <MoreIcon className={classes.iconSize} />
             </IconButton>
-          </div>}
+          </div>} */}
         </Toolbar>
       </AppBar>
       <MenuBlock setOpenMenuBlock={ setOpenMenuBlock } openMenuBlock={ openMenuBlock }/>
-      { isLoggedIn && openMobileMenu && mobileMenu}
+      {/* { isLoggedIn && openMobileMenu && mobileMenu} */}
       { isLoggedIn && openProfileMenu && <ProfileMenu mobileTrigger={false}/> }
       { openLoginBlock && LoginTemp }
       { openProfilBlock && <ProfileBlock setCloseUpdate={setOpenProfilBlock} /> }
