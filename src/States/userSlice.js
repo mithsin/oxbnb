@@ -240,7 +240,7 @@ export const userLogout = ({history}) => dispatch => {
 
 // AWS Cognito Get User Data
 export const userLoginCheck = () => dispatch => {
-    if (userPool.getCurrentUser() !== null) {
+    if (userPool.getCurrentUser() != null) {
         userPool.getCurrentUser().getSession((err, session) => {
             if(err){console.log('userPool.getCurrentUser() err---->', err)};
             const idToken = session?.getIdToken().getJwtToken();

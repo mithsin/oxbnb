@@ -1,4 +1,4 @@
-import {createUseStyles} from 'react-jss'
+import { createUseStyles } from 'react-jss'
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = createUseStyles({
@@ -73,7 +73,7 @@ export const useHeaderStyles = makeStyles((theme) => ({
     background: "#ffffff",
     padding: "0",
     position: "absolute",
-    top: "36px",
+    top: "88px",
     right: "16px",
     boxShadow: "0px 3px 6px 1px #bbb",
     [theme.breakpoints.down('sm')]: {
@@ -120,3 +120,4 @@ export const useHeaderStyles = makeStyles((theme) => ({
     display: "flex"
   },
 }));
+

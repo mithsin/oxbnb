@@ -14,7 +14,7 @@ const CloseBar = ({setClose, color}) => {
         <div style={wrapperStyle}>
             <FontAwesomeIcon 
                 icon={faTimes}
-                size="3x" 
+                size="2x" 
                 style={{color: color ? color : "black", cursor: 'pointer' }}
                 onClick={()=> setClose(false)}/>
         </div>

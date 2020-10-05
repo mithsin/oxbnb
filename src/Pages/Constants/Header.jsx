@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Login from 'Components/Blocks/Login';
-import Profile from 'Components/Blocks/Profile';
+import { ProfileBlock, MenuBlock } from 'Pages/Constants/HeaderComponents';
 import useOnClickOutside from 'Utils/useOnClickOutside';
 import { useHeaderStyles } from './styles';
 import {
@@ -45,6 +45,7 @@ const Header = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [openMobileProfile, setOpenMobileProfile] = useState(false);
   const [openProfilBlock, setOpenProfilBlock] = useState(false);
+  const [openMenuBlock, setOpenMenuBlock] = useState(false);
 
   useOnClickOutside(loginRef, () => setopenLoginBlock(false));
   useOnClickOutside(profileRef, () => setOpenProfileMenu(false), profileRefSub);
@@ -65,7 +66,10 @@ const Header = () => {
     }
     setOpenMobileMenu(!openMobileMenu)
   }
-
+  
+  const onClickOpenMenu = () => {
+    setOpenMenuBlock(!openMenuBlock);
+  };
   const menuId = 'primary-search-account-menu';
   const ProfileMenu = ({mobileTrigger}) => (
     <ul
@@ -178,6 +182,7 @@ const Header = () => {
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
+            onClick={onClickOpenMenu}
           >
             <MenuIcon className={classes.iconSize} />
           </IconButton>
@@ -202,10 +207,11 @@ const Header = () => {
           </div>}
         </Toolbar>
       </AppBar>
+      <MenuBlock setOpenMenuBlock={ setOpenMenuBlock } openMenuBlock={ openMenuBlock }/>
       { isLoggedIn && openMobileMenu && mobileMenu}
       { isLoggedIn && openProfileMenu && <ProfileMenu mobileTrigger={false}/> }
       { openLoginBlock && LoginTemp }
-      { openProfilBlock && <Profile setCloseUpdate={setOpenProfilBlock} /> }
+      { openProfilBlock && <ProfileBlock setCloseUpdate={setOpenProfilBlock} /> }
     </div>
   );
 }

@@ -5,43 +5,17 @@ import {
   Button,
   ListItemText,
   ListItem,
-  List,
-  makeStyles } from '@material-ui/core';
+  List 
+} from '@material-ui/core';
+import { useProfileBlockStyles } from './styles';
 import ImageUpload from 'Components/ImageUpload/ImageUpload';
 import CloseBar from 'Components/Utils/CloseBar';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    border: '1px solid black'
-  },
-  listItem: {
-    display: 'flex',
-    justifyContent: 'center'
-  },
-  listItemImage: {
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column',
-    '& #dropbox': {
-      width: '100%'
-    }
-  },
-  listItemCopyLink: {
-    justifyContent: 'space-between',
-    '& input': {
-      margin: '0px',
-    },
-    '& button' : {
-      minWidth: '150px',
-    }
-  }
-}));
+
 
 const ProfileBlock = ({setCloseUpdate}) => {
   const dispatch = useDispatch();
-  const classes = useStyles();
+  const classes = useProfileBlockStyles();
   const [profileImageURL, setProfileImageURL] = useState('');
   const [paramInput, setParamInput] = useState({});
   useEffect(()=>{
@@ -56,26 +30,28 @@ const ProfileBlock = ({setCloseUpdate}) => {
   };
 
   return (
-    <List className={classes.root}>
-      <ListItem>
-        <span>Settings</span> 
-        <CloseBar setClose={setCloseUpdate}/>
-      </ListItem>
-      <ListItem className={classes.listItemImage}>
-        <ListItemText id="profile-image-change" primary="Update Profile Image" />
-        <ImageUpload setImageURL={setProfileImageURL}/>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Button 
-          variant="contained"
-          color="primary"
-          onClick={onClickUpdateProfile}
-          onKeyPress={onClickUpdateProfile}
-        >
-            Update
-        </Button>
-      </ListItem>
-    </List>
+    <div className={classes.bodyWrapper}>
+      <List className={classes.root}>
+        <ListItem>
+          <span>Settings</span> 
+          <CloseBar setClose={setCloseUpdate}/>
+        </ListItem>
+        <ListItem className={classes.listItemImage}>
+          <ListItemText id="profile-image-change" primary="Update Profile Image" />
+          <ImageUpload setImageURL={setProfileImageURL}/>
+        </ListItem>
+        <ListItem className={classes.listItem}>
+          <Button 
+            variant="contained"
+            color="primary"
+            onClick={onClickUpdateProfile}
+            onKeyPress={onClickUpdateProfile}
+          >
+              Update
+          </Button>
+        </ListItem>
+      </List>
+    </div>
   );
 }
 
