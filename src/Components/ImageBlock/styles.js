@@ -21,6 +21,9 @@ export const useStyles = createUseStyles({
         left: '50px',
         backgroundColor: '#ffffff33',
         borderRadius: '6px',
+        '@media only screen and (max-width: 769px)': {
+            top:'94%',
+        }
     },
     nextBtn: {
         position: 'absolute',
@@ -28,6 +31,9 @@ export const useStyles = createUseStyles({
         right: '50px',
         backgroundColor: '#ffffff33',
         borderRadius: '6px',
+        '@media only screen and (max-width: 769px)': {
+            top:'94%',
+        }
     },
     
 })
