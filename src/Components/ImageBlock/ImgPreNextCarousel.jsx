@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStyles } from './styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSwipeable, Swipeable } from 'react-swipeable';
 import { 
     faChevronRight,
     faChevronLeft
@@ -37,7 +38,11 @@ const ImgPreNextCarousel = ({imgSrc=[]}) => {
             <div className={classes.prevBtn} onClick={onClickNext}>
                 <FontAwesomeIcon icon={faChevronLeft} className="fa-3x"/>
             </div>
-            <div className={classes.imageBlock} style={backgroundImgSrc}/>
+            <Swipeable 
+                onSwipedLeft={ onClickNext } 
+                onSwipedRight={ onClickPrev } 
+                className={classes.imageBlock} 
+                style={backgroundImgSrc}/>
             <div className={classes.nextBtn} onClick={onClickPrev}>
                 <FontAwesomeIcon icon={faChevronRight} className="fa-3x"/>
             </div>
