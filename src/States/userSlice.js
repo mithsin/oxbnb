@@ -243,9 +243,9 @@ export const userLoginCheck = () => dispatch => {
     if (userPool.getCurrentUser() != null) {
         userPool.getCurrentUser().getSession((err, session) => {
             if(err){console.log('userPool.getCurrentUser() err---->', err)};
-            const idToken = session?.getIdToken().getJwtToken();
+
             axios.get(`${ApiGateWayUserURL}?subId=${session.idToken.payload.sub}`, {
-                headers: { 'Authorization' : idToken }
+                headers: { 'Authorization' : session?.getIdToken()?.getJwtToken() }
             })
                 .then(res => {
                     dispatch(setUserState(res.data));
