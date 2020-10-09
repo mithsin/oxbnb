@@ -22,7 +22,7 @@ export const useStyles = createUseStyles({
         backgroundColor: '#ffffff33',
         borderRadius: '6px',
         '@media only screen and (max-width: 769px)': {
-            top:'94%',
+            top:'96%',
         }
     },
     nextBtn: {
@@ -32,7 +32,7 @@ export const useStyles = createUseStyles({
         backgroundColor: '#ffffff33',
         borderRadius: '6px',
         '@media only screen and (max-width: 769px)': {
-            top:'94%',
+            top:'96%',
         }
     },
     

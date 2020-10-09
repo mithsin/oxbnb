@@ -36,7 +36,7 @@ const ImgPreNextCarousel = ({imgSrc=[]}) => {
     return(
         <div className={classes.carouselWrapper}>
             <div className={classes.prevBtn} onClick={onClickNext}>
-                <FontAwesomeIcon icon={faChevronLeft} className="fa-3x"/>
+                <FontAwesomeIcon icon={faChevronLeft} className="fa-2x"/>
             </div>
             <Swipeable 
                 onSwipedLeft={ onClickNext } 
@@ -44,7 +44,7 @@ const ImgPreNextCarousel = ({imgSrc=[]}) => {
                 className={classes.imageBlock} 
                 style={backgroundImgSrc}/>
             <div className={classes.nextBtn} onClick={onClickPrev}>
-                <FontAwesomeIcon icon={faChevronRight} className="fa-3x"/>
+                <FontAwesomeIcon icon={faChevronRight} className="fa-2x"/>
             </div>
         </div>
     );
