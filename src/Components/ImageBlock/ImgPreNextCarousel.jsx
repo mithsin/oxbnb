@@ -7,9 +7,9 @@ import {
     faChevronLeft
 } from '@fortawesome/free-solid-svg-icons';
 
-const ImgPreNextCarousel = ({imgSrc=[]}) => {
-    const classes = useStyles()
-    const [currentIndex, setCurrentIndex] = useState(0)
+const ImgPreNextCarousel = ({imgSrc=[], arrowEnabled=false}) => {
+    const classes = useStyles();
+    const [currentIndex, setCurrentIndex] = useState(0);
     const backgroundImgSrc = {
         backgroundImage: `url(${imgSrc[currentIndex]})`,
         backgroundRepeat: 'no-repeat',
@@ -35,17 +35,17 @@ const ImgPreNextCarousel = ({imgSrc=[]}) => {
 
     return(
         <div className={classes.carouselWrapper}>
-            <div className={classes.prevBtn} onClick={onClickNext}>
+            {arrowEnabled && <div className={classes.prevBtn} onClick={onClickNext}>
                 <FontAwesomeIcon icon={faChevronLeft} className="fa-2x"/>
-            </div>
+            </div>}
             <Swipeable 
                 onSwipedLeft={ onClickNext } 
                 onSwipedRight={ onClickPrev } 
                 className={classes.imageBlock} 
                 style={backgroundImgSrc}/>
-            <div className={classes.nextBtn} onClick={onClickPrev}>
+            {arrowEnabled && <div className={classes.nextBtn} onClick={onClickPrev}>
                 <FontAwesomeIcon icon={faChevronRight} className="fa-2x"/>
-            </div>
+            </div>}
         </div>
     );
 };

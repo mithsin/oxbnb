@@ -1,17 +1,16 @@
-FROM jenkins/jenkins:2.249.1-lts
-USER root
-RUN apt-get update && apt-get install -y \
-       apt-transport-https \
-       ca-certificates \
-       curl \
-       gnupg2 \
-       software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN apt-key fingerprint 0EBFCD88
-RUN add-apt-repository \
-       "deb [arch=amd64] https://download.docker.com/linux/debian \
-       $(lsb_release -cs) \
-       stable"
-RUN apt-get update && apt-get install -y docker-ce-cli
-USER jenkins
-ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
+# build environment
+FROM node:12.15 as build
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json ./
+RUN npm install --silent
+RUN npm install react-scripts -g --silent
+COPY . /app
+RUN npm run build
+
+# production environment
+# FROM nginxinc/nginx-unprivileged:1.16.1-alpine
+# COPY --from=build /app/build /usr/share/nginx/html
+# COPY nginx/nginx.conf /etc/nginx/
+# EXPOSE 8081
+# CMD ["nginx", "-g", "daemon off;", "-c", "/etc/nginx/nginx.conf"]
