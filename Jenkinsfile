@@ -1,28 +1,21 @@
 pipeline {
-  agent any
-    
-  tools {nodejs "node"}
-    
-  stages {
-        
-    stage('Git') {
-      steps {
-        git 'https://github.com/mithsin/oxbnb.git'
-      }
+    agent any
+    stages {
+        stage("build") {
+            steps {
+                sh 'node -v'
+                sh 'npm install'
+            }
+        }
+        stage("test") {
+            steps {
+                echo 'testing application'
+            }
+        }
+        stage("deploy") {
+            steps {
+                echo 'deploy application'
+            }
+        }
     }
-     
-    stage('Build') {
-      steps {
-        sh 'npm install'
-        sh 'npm build'
-      }
-    }  
-    
-            
-    stage('Test') {
-      steps {
-        sh 'node test'
-      }
-    }
-  }
 }
