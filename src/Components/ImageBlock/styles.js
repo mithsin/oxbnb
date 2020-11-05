@@ -11,7 +11,7 @@ export const useStyles = createUseStyles({
         maxWidth: '1200px',
         height: '65vh',
         margin: 'auto',
-        boxShadow: 'white 0px 0px 12px 0px inset',
+        // boxShadow: 'white 0px 0px 12px 0px inset',
         borderRadius: '6px',
         '@media only screen and (max-width: 769px)': {
             width: '100%'
