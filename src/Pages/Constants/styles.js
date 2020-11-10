@@ -6,7 +6,8 @@ export const useCustomStyles = createUseStyles({
     paddingTop: "2rem",
     position: "fixed",
     width: "100%",
-    zIndex: "9999"
+    zIndex: "9999",
+    backgroundColor: 'rgba(255,255,255,.2)'
   },
 });
 

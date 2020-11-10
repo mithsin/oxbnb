@@ -1,18 +1,13 @@
 import React from 'react';
-import ImgPreNextCarousel from 'Components/ImageBlock/ImgPreNextCarousel';
-import { useStyles } from './styles';
-import { imgSrc } from 'Utils/imageSrc';
+import LandingTopPage from 'PageComponents/HomePage/LandingTopPage';
+import { homeStyles } from './styles';
 
 const Home = () => {
-    const classes = useStyles()
+    const classes = homeStyles()
     return(
-        <div style={{paddingTop: "100px"}}>
-            <div className={classes.imgCarouselWrapper}>
-                <ImgPreNextCarousel imgSrc={ imgSrc } />
-            </div>
-            <div>
-
-            </div>
+        <div>
+            <LandingTopPage />
+            <h1>2nd block</h1>
         </div>
     )
 }

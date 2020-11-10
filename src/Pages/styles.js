@@ -55,3 +55,7 @@ export const signUpStyles = createUseStyles({
         padding: '6px'
     }
 });
+
+export const homeStyles = createUseStyles({
+
+});
