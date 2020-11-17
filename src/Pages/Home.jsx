@@ -1,12 +1,13 @@
 import React from 'react';
 import LandingTopPage from 'PageComponents/HomePage/LandingTopPage';
+import LandingTopPageBgImg from 'PageComponents/HomePage/LandingTopPageBgImg';
 import { homeStyles } from './styles';
 
 const Home = () => {
     const classes = homeStyles()
     return(
         <div>
-            <LandingTopPage />
+            <LandingTopPageBgImg imgSrc="https://res.cloudinary.com/paf1david/image/upload/v1605649351/itap-of-some-more-beach-houses-wallpaper_vil2bt.jpg" />
             <h1>2nd block</h1>
         </div>
     )
