@@ -57,5 +57,12 @@ export const signUpStyles = createUseStyles({
 });
 
 export const homeStyles = createUseStyles({
-
+    landingChildren: {
+        display: 'flex',
+        flexBasis: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column'
+    }
 });

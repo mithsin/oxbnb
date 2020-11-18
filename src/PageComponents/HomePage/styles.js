@@ -39,8 +39,8 @@ export const LandingTopPageBgImgStyles = createUseStyles({
         top: '0px',
         left: '0px',
         width: 'calc(100% - 32px)',
-        height: 'calc(100% - 116px)',
-        padding: '100px 16px 16px 16px',
+        height: 'calc(100% - 172px)',
+        padding: '100px 16px 16px',
         position: 'absolute',
     }),
 });
