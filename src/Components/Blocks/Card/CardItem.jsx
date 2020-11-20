@@ -3,7 +3,11 @@ import React from 'react';
 const CardItem = () => {
 
     return(
-        <div></div>
+        <div>
+            <div>img</div>
+            <div>Origin price</div>
+            <div>current collect</div>
+        </div>
     );
 };
 
