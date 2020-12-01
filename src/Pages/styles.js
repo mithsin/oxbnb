@@ -64,5 +64,9 @@ export const homeStyles = createUseStyles({
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column'
+    },
+    CardWrapper: {
+        display: 'grid',
+        gridTemplateColumns: 'auto auto auto',
     }
 });
