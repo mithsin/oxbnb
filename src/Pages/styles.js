@@ -68,5 +68,11 @@ export const homeStyles = createUseStyles({
     CardWrapper: {
         display: 'grid',
         gridTemplateColumns: 'auto auto auto',
+        '@media only screen and (max-width: 960px) and (min-width: 600px)': {
+            gridTemplateColumns: 'auto auto',
+        },
+        '@media only screen and (max-width: 599px)': {
+            gridTemplateColumns: 'auto',
+        }
     }
 });
