@@ -39,7 +39,7 @@ const MenuBlock = ({openMenuBlock, setOpenMenuBlock}) => {
           {
             menuList.map((type, index) => {
               return(
-                <MenuItem className={classes.menuList}>
+                <MenuItem className={classes.menuList} key={`${index}-menu`}>
                   <span 
                     className={classes.ListText}
                     onClick={()=> history.push(type.link)}>
