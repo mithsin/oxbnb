@@ -10,7 +10,8 @@ const SubmitButton = ({disabled, onClick, label=null}) => {
                 bgColor: "#3f51b5",
                 boxShadow: "2px 2px 23px rgba(0, 0, 0, 0.2) inset",
                 hColor: "white",
-                hbgColor: "#6495ED"
+                hbgColor: "#6495ED",
+                padding: "8px"
             }}
             { ...disabled && {disabled: disabled}}
             onClick={onClick} />

@@ -65,6 +65,17 @@ export const homeStyles = createUseStyles({
         alignItems: 'center',
         flexDirection: 'column'
     },
+    SectionWrapper: {
+        marginBottom: '36px',
+        padding: '16px',
+    },
+    SectionWrapperLessP: {
+        marginBottom: '36px',
+        padding: '16px 16px 16px 8px',
+        '& h2': {
+            paddingLeft: '8px',
+        }
+    },
     CardWrapper: {
         display: 'grid',
         gridTemplateColumns: 'auto auto auto',

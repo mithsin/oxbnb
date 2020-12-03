@@ -1,12 +1,13 @@
 import React from 'react';
 import { CardItemStyle } from './styles';
+import { SubmitButton } from 'Components/MUI/ButtonTypes';
 
 const CardItem = ({cardStatus}) => {
     const classes = CardItemStyle();
 
     return(
         <ul className={classes.CardItem}>
-            <li>
+            <li className={classes.CardImgWrapper}>
                 <img
                     className={classes.img} 
                     src={cardStatus.img}
@@ -16,8 +17,11 @@ const CardItem = ({cardStatus}) => {
             <li>Loan Request: {cardStatus.loanRequest}</li>
             <li>Accumulated: {cardStatus.accumulated}</li>
             <li>Investors: {cardStatus.investors}</li>
-            <li>Start Date: {cardStatus.startDate}</li>
-            <li>End Date: {cardStatus.endDate}</li>
+            <li className={classes.CardBtnWrapper}>
+                <SubmitButton
+                    label="EXPLORE"
+                />
+            </li>
         </ul>
     );
 };

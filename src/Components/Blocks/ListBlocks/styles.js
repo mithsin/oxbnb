@@ -6,7 +6,9 @@ export const ListBlockDetailStyle = createUseStyles({
     ListWrapper: {
         display: 'flex',
         flexDirection: 'column',
-        margin: '24px 8px',
+        '& h2': {
+            margin: '0px',
+        }
     },
     ImgWrapper: {
         display: 'flex',

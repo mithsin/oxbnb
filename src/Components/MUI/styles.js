@@ -8,6 +8,7 @@ export const useStyles = makeStyles({
         color: props.color,
         backgroundColor: props.bgColor,
         boxShadow: props.boxShadow,
+        padding: props.padding,
         "&:hover": {
           color: props.hColor,
           backgroundColor: props.hbgColor

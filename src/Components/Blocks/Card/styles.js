@@ -7,10 +7,16 @@ export const CardItemStyle = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
         listStyle: 'none',
-        margin: '8px',
+        margin: '0px',
         padding: '8px'
+    },
+    CardImgWrapper: {
+        height: '70%',
     },
     img: {
         width: '100%'
-    }
+    },
+    CardBtnWrapper: {
+        margin: '8px 0',
+    },
 });

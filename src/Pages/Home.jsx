@@ -18,13 +18,19 @@ const Home = () => {
                     <div><h2>Invest real estate together</h2></div>
                 </div>
             </LandingTopPageBgImg>
-            <ListBlockDetail {...ListBlockDetailSrc}/>
-            <div className={classes.CardWrapper}>
-                {
-                    cardStatusList.map((item, index)=>
-                        <CardItem key={`${index}-list`} cardStatus={item}/>
-                    )
-                }
+            <div className={classes.SectionWrapper}>
+                <h2>Featured Project</h2>
+                <ListBlockDetail {...ListBlockDetailSrc}/>
+            </div>
+            <div className={classes.SectionWrapperLessP}>
+                <h2>Most Populated Project</h2>
+                <div className={classes.CardWrapper}>
+                    {
+                        cardStatusList.map((item, index)=>
+                            <CardItem key={`${index}-list`} cardStatus={item}/>
+                        )
+                    }
+                </div>
             </div>
             <h1>4nd block</h1>
         </div>
