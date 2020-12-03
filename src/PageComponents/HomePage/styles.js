@@ -16,25 +16,25 @@ export const LandingTopPageStyles = createUseStyles({
 });
 
 export const LandingTopPageBgImgStyles = createUseStyles({
-    landingWrapper: {
+    landingWrapper: props => ({ 
         minHeight: "400px",
         height: "90vh",
         backgroundPosition: "center",
         backgroundRepeat: "no-repea",
         backgroundSize: "cover",
         '@media screen and (min-width: 1440px)' : {
-            backgroundImage: props=> `url(${props.imgHd})`,
+            backgroundImage: props => `url(${props.imgHd})`,
         },
         '@media screen and (min-width: 940px)' : {
-            backgroundImage: props=> `url(${props.imgMd})`,
+            backgroundImage: props => `url(${props.imgMd})`,
         },
         '@media screen and (min-width: 541px)' : {
-            backgroundImage: props=> `url(${props.imgLd})`,
+            backgroundImage: props => `url(${props.imgLd})`,
         },
         '@media screen and (max-width: 540px)' : {
-            backgroundImage: props=> `url(${props.imgMod})`,
+            backgroundImage: props => `url(${props.imgMod})`,
         },
-    },
+    }),
     topWrapper: props => ({
         top: '0px',
         left: '0px',
