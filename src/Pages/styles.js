@@ -7,6 +7,22 @@ export const useStyles = createUseStyles({
     }
 });
 
+export const ProjectDetailStyle = createUseStyles({
+    Wrapper: props => ({
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+    }),
+    TitleWrapper: props => ({
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1,
+    }),
+    ListWrapper: props => ({
+        display: 'flex'
+    }),
+});
+
 export const signUpStyles = createUseStyles({
     signUpBodyWrapper: {
         display: 'flex',

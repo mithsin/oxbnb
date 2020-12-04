@@ -1,21 +1,24 @@
 import React from 'react';
+import { SubjectInfoBlock } from 'Components/Blocks/InfoBlocks';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
+import { ProjectDetailStyle } from './styles';
 
 const ProjectDetail = () => {
+    const classes = ProjectDetailStyle();
 
-    const InfoBlock = ({info, title}) => (
-        <div>
-            <span>{info}</span>
-            <span>{title}</span>
-        </div>
-    );
+    const projectDetailSetting = {
+        projectId: '29891298192831fj91jf9ifejjfsokdfj',
+        title: 'My New House',
+        description: 'like to move and invest in this house'
+    };
+
     return (
-        <div>
-            <div>
+        <div className={classes.Wrapper}>
+            <div className={classes.TitleWrapper}>
                 <h2>Title</h2>
                 <p>Short Description</p>
             </div>
-            <div>
+            <div className={classes.ListWrapper}>
                 <div>
                     <div>Images</div>
                     <div>
@@ -24,9 +27,9 @@ const ProjectDetail = () => {
                     </div>
                 </div>
                 <div>
-                    <InfoBlock info="$3,000.00" title="Loan request $50,000.00"/>
-                    <InfoBlock info="3" title="Angel Investors"/>
-                    <InfoBlock info="30" title="Days to go"/>
+                    <SubjectInfoBlock info="$3,000.00" title="Loan request $50,000.00"/>
+                    <SubjectInfoBlock info="3" title="Angel Investors"/>
+                    <SubjectInfoBlock info="30" title="Days to go"/>
                     <SubmitButton
                         label="INVEST THIS PROJECT"/>
                 </div>
