@@ -12,15 +12,42 @@ export const ProjectDetailStyle = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
+        flexBasis: '100%',
     }),
     TitleWrapper: props => ({
         display: 'flex',
         flexDirection: 'column',
-        flex: 1,
+        flex: '1',
     }),
     ListWrapper: props => ({
-        display: 'flex'
+        display: 'flex',
+        flexBasis: '100%',
     }),
+    ListImgBlock: props => ({
+        flex: '1 0 60%',
+        padding: '0 8px',
+    }),
+    ListInfoBlock: props => ({
+        flex: '1 0 40%',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '0 8px',
+    }),
+    ListInfoBlockBtn: props => ({
+        marginTop: 'auto'
+    }),
+    '@media screen and (max-width: 740px)' : {
+        ListWrapper: props => ({
+            display: 'flex',
+            flexDirection: 'column',
+        }),
+        // ListImgBlock: props => ({
+        //     flex: '1 0 100%',
+        // }),
+        // ListInfoBlock: props => ({
+        //     flex: '1 0 100%',
+        // }),
+    },
 });
 
 export const signUpStyles = createUseStyles({
