@@ -1,4 +1,5 @@
 export const cardStatusList = [{
+    projectId: 1,
     img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '277,781.00',
     loanRequest: '185,000.00',
@@ -56,7 +57,8 @@ export const cardStatusList = [{
         }
     }
 },{
-    img: 'https://archello.s3.eu-central-1.amazonaws.com/images/2018/10/11/Contemporary-Modern-House-Design-6.1539270983.8601.jpg',
+    projectId: 2,
+    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '287,781.00',
     loanRequest: '155,000.00',
     accumulated: '10,000.00',
@@ -113,7 +115,8 @@ export const cardStatusList = [{
         }
     }
 },{
-    img: 'https://wallpaperaccess.com/full/259715.jpg',
+    projectId: 3,
+    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '387,781.00',
     loanRequest: '255,000.00',
     accumulated: '110,000.00',
@@ -170,7 +173,8 @@ export const cardStatusList = [{
         }
     }
 },{
-    img: 'https://www.hdnicewallpapers.com/Walls/Big/House%20and%20Bungalow/Different_New_Small_Luxury_House_4K_Wallpaper.jpg',
+    projectId: 4,
+    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '587,781.00',
     loanRequest: '355,000.00',
     accumulated: '160,000.00',

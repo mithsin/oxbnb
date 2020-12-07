@@ -25,13 +25,13 @@ export const ProjectDetailStyle = createUseStyles({
     }),
     ListImgBlock: props => ({
         flex: '1 0 60%',
-        padding: '0 8px',
+        // padding: '0 8px',
     }),
     ListInfoBlock: props => ({
         flex: '1 0 40%',
         display: 'flex',
         flexDirection: 'column',
-        padding: '0 8px',
+        // padding: '0 8px',
     }),
     ListInfoBlockBtn: props => ({
         marginTop: 'auto'
@@ -121,9 +121,9 @@ export const homeStyles = createUseStyles({
     },
     CardWrapper: {
         display: 'grid',
-        gridTemplateColumns: 'auto auto auto',
+        gridTemplateColumns: 'repeat(3, 1fr)',
         '@media only screen and (max-width: 960px) and (min-width: 600px)': {
-            gridTemplateColumns: 'auto auto',
+            gridTemplateColumns: 'repeat(2, 1fr)',
         },
         '@media only screen and (max-width: 599px)': {
             gridTemplateColumns: 'auto',

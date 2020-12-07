@@ -21,8 +21,8 @@ export const ListBlockDetailStyle = createUseStyles({
     FourImgs: {
         flex: '50%',
         display: 'grid',
-        gridTemplateColumns: '50% 50%',
-        gridTemplateRows: '50% 50%',
+        gridTemplateColumns: 'repeat(2, 1fr)',
+        gridTemplateRows: 'repeat(2, 1fr)',
         // '& span': {
         //     justifySelf: 'center',
         //     alignSelf: 'center',

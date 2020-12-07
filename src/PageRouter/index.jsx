@@ -6,7 +6,7 @@ const PageRouter = () => {
   return (
     <Switch>
         <Route exact path="/" component = { Home } />
-        <Route exact path="/project-detail" component = { ProjectDetail } />
+        <Route exact path="/project-detail/:projectId" component = { ProjectDetail } />
         <Route exact path="/signup" component = { SignUp } />
         <Route exact path="/verify-account" component = { Verify } />
     </Switch>
