@@ -1,13 +1,15 @@
 export const cardStatusList = [{
-    projectId: 1,
-    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+    projectId: '1',
+    title: 'My New House 1',
+    description: 'like to move and invest in this house',
+    coverImg: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '277,781.00',
     loanRequest: '185,000.00',
     accumulated: '110,000.00',
     investors: 8,
-    startDate: '01/02/2020',
-    endDate: '02/02/2020',
-    purchaserBackgroundChecked: 'checked',
+    startDate: '2020-01-13 03:25:21',
+    endDate: '2020-02-13 09:25:31',
+    purchaserBackgroundChecked: true,
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -28,7 +30,7 @@ export const cardStatusList = [{
             }
         }
     },
-    PropertyDetails: {
+    propertyDetails: {
         images: ['a.jpg', 'b.jpg', 'c.jpg'],
         location: {
             address: '123 mock st',
@@ -57,15 +59,17 @@ export const cardStatusList = [{
         }
     }
 },{
-    projectId: 2,
-    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+    projectId: '2',
+    title: 'My New House 2',
+    description: 'like to move and invest in this house',
+    coverImg: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '287,781.00',
     loanRequest: '155,000.00',
     accumulated: '10,000.00',
     investors: 4,
-    startDate: '01/02/2020',
-    endDate: '02/02/2020',
-    purchaserBackgroundChecked: 'checked',
+    startDate: '2020-03-02 03:25:21',
+    endDate: '2020-05-02 09:25:31',
+    purchaserBackgroundChecked: false,
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -86,7 +90,7 @@ export const cardStatusList = [{
             }
         }
     },
-    PropertyDetails: {
+    propertyDetails: {
         images: ['a.jpg', 'b.jpg', 'c.jpg'],
         location: {
             address: '123 mock st',
@@ -115,15 +119,17 @@ export const cardStatusList = [{
         }
     }
 },{
-    projectId: 3,
-    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+    projectId: '3',
+    title: 'My New House 3',
+    description: 'like to move and invest in this house',
+    coverImg: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '387,781.00',
     loanRequest: '255,000.00',
     accumulated: '110,000.00',
     investors: 6,
-    startDate: '01/02/2020',
-    endDate: '02/02/2020',
-    purchaserBackgroundChecked: 'checked',
+    startDate: '2020-03-02 03:25:21',
+    endDate: '2020-04-02 09:25:31',
+    purchaserBackgroundChecked: false,
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -144,7 +150,7 @@ export const cardStatusList = [{
             }
         }
     },
-    PropertyDetails: {
+    propertyDetails: {
         images: ['a.jpg', 'b.jpg', 'c.jpg'],
         location: {
             address: '123 mock st',
@@ -173,15 +179,17 @@ export const cardStatusList = [{
         }
     }
 },{
-    projectId: 4,
-    img: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+    projectId: '4',
+    title: 'My New House 4',
+    description: 'like to move and invest in this house',
+    coverImg: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
     estMarketValue: '587,781.00',
     loanRequest: '355,000.00',
     accumulated: '160,000.00',
     investors: 2,
-    startDate: '01/02/2020',
-    endDate: '02/02/2020',
-    purchaserBackgroundChecked: 'checked',
+    startDate: '2020-02-02 03:25:21',
+    endDate: '2020-03-02 09:25:31',
+    purchaserBackgroundChecked: false,
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -202,7 +210,7 @@ export const cardStatusList = [{
             }
         }
     },
-    PropertyDetails: {
+    propertyDetails: {
         images: ['a.jpg', 'b.jpg', 'c.jpg'],
         location: {
             address: '123 mock st',

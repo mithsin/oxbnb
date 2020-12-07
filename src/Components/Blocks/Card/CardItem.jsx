@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { CardItemStyle } from './styles';
 import { SubjectInfoBlock } from 'Components/Blocks/InfoBlocks';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 
 const CardItem = ({cardStatus}) => {
+    let history = useHistory();
     const classes = CardItemStyle();
     const percentageOfHouseMarketValue = () => 
         Math.round((parseInt(cardStatus.loanRequest) / parseInt(cardStatus.estMarketValue)) * 100);
@@ -14,12 +15,12 @@ const CardItem = ({cardStatus}) => {
             <li className={classes.CardImgWrapper}>
                 <img
                     className={classes.img} 
-                    src={cardStatus.img}
+                    src={cardStatus.coverImg}
                     alt='card image' />
             </li>
             <li>Estimated Market Value: {cardStatus.estMarketValue}</li>
             <li>Investors: {cardStatus.investors}</li>
-            <li>Location: {cardStatus.PropertyDetails.location.city}, {cardStatus.PropertyDetails.location.state}</li>
+            <li>Location: {cardStatus?.propertyDetails?.location?.city}, {cardStatus?.propertyDetails?.location?.state}</li>
             <li>
                 <SubjectInfoBlock
                     info={`$${cardStatus.accumulated}`}
@@ -29,7 +30,7 @@ const CardItem = ({cardStatus}) => {
             <li className={classes.CardBtnWrapper}>
                 <SubmitButton
                     label="EXPLORE"
-                    onClick={()=> <Link to={`/project-detail/${cardStatus.projectId}`}/>}
+                    onClick={()=> history.push(`/project-detail/${cardStatus.projectId}`)}
                 />
             </li>
         </ul>

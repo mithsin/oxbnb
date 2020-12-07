@@ -12,26 +12,30 @@ export const ProjectDetailStyle = createUseStyles({
         display: 'flex',
         flexDirection: 'column',
         flex: 1,
-        flexBasis: '100%',
+        maxWidth: '1440px',
     }),
     TitleWrapper: props => ({
         display: 'flex',
         flexDirection: 'column',
         flex: '1',
+        textAlign: 'center',
     }),
     ListWrapper: props => ({
         display: 'flex',
         flexBasis: '100%',
+        justifyContent: 'center',
     }),
     ListImgBlock: props => ({
         flex: '1 0 60%',
-        // padding: '0 8px',
+        maxWidth: '500px',
+        padding: '0px',
     }),
     ListInfoBlock: props => ({
         flex: '1 0 40%',
+        maxWidth: '300px',
         display: 'flex',
         flexDirection: 'column',
-        // padding: '0 8px',
+        padding: '0 8px',
     }),
     ListInfoBlockBtn: props => ({
         marginTop: 'auto'
@@ -40,13 +44,20 @@ export const ProjectDetailStyle = createUseStyles({
         ListWrapper: props => ({
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'center',
         }),
-        // ListImgBlock: props => ({
-        //     flex: '1 0 100%',
-        // }),
-        // ListInfoBlock: props => ({
-        //     flex: '1 0 100%',
-        // }),
+        ListImgBlock: props => ({
+            flex: '1 0 60%',
+            maxWidth: '100%',
+            padding: '0 8px',
+        }),
+        ListInfoBlock: props => ({
+            flex: '1 0 40%',
+            maxWidth: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '0 8px',
+        }),
     },
 });
 
