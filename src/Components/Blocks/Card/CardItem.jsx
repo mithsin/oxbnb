@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { CardItemStyle } from './styles';
-import { SubjectInfoBlock } from 'Components/Blocks/InfoBlocks';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 
 const CardItem = ({cardStatus}) => {
@@ -18,15 +17,20 @@ const CardItem = ({cardStatus}) => {
                     src={cardStatus.coverImg}
                     alt='card image' />
             </li>
-            <li>Estimated Market Value: {cardStatus.estMarketValue}</li>
-            <li>Investors: {cardStatus.investors}</li>
-            <li>Location: {cardStatus?.propertyDetails?.location?.city}, {cardStatus?.propertyDetails?.location?.state}</li>
-            <li>
-                <SubjectInfoBlock
-                    info={`$${cardStatus.accumulated}`}
-                    title={`Asked: ${cardStatus.loanRequest}, ${percentageOfHouseMarketValue()}% est. market value`}
-                />
+
+            <li className={classes.CardLocationLi}>
+                <span>
+                    {cardStatus.investors} Investors
+                </span>
+                <span>
+                    {cardStatus?.propertyDetails?.location?.city}, {cardStatus?.propertyDetails?.location?.state}
+                </span>
             </li>
+            <li className={classes.CardTitleLi}>
+                {cardStatus.title}
+            </li>
+            <li className={classes.CardByLi}>${cardStatus.accumulated}, {percentageOfHouseMarketValue()}% of est. market value</li> 
+            <li className={classes.CardByLi}>by: {cardStatus.by}</li>
             <li className={classes.CardBtnWrapper}>
                 <SubmitButton
                     label="EXPLORE"

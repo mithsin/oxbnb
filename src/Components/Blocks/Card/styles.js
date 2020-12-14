@@ -14,9 +14,34 @@ export const CardItemStyle = createUseStyles({
         height: '70%',
     },
     img: {
-        width: '100%'
+        width: '100%',
+    },
+    CardLocationLi: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        '& span:first-child': {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontSize: '12px',
+        },
+        '& span:last-child': {
+            fontSize: '12px',
+        },
+    },
+    CardTitleLi: {
+        textAlign: 'center',
+        fontSize: '26px',
+        fontWeight: '600',
+        margin: '16px',
     },
     CardBtnWrapper: {
         margin: '8px 0',
+    },
+    CardByLi: {
+        fontSize: '12px',
+        fontWeight: '600',
+        display: 'flex',
+        justifyContent: 'flex-end'
     },
 });

@@ -24,19 +24,72 @@ export const ProjectDetailStyle = createUseStyles({
         display: 'flex',
         flexBasis: '100%',
         justifyContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
     }),
-    ListImgBlock: props => ({
-        flex: '1 0 60%',
-        maxWidth: '500px',
+    ListImgBlock: {
+        flex: '1',
+        maxWidth: '1240px',
+        // maxWidth: '500px',
         padding: '0px',
-    }),
+        display: 'flex',
+        '@media only screen and (max-width: 960px) and (min-width: 600px)': {
+            padding: '10px',
+            flexDirection: 'column',
+        },
+        '@media only screen and (max-width: 599px)': {
+            padding: '10px',
+            flexDirection: 'column',
+        }
+    },
+    ListLgImgBlock: {
+        height: '400px',
+        width: '60%',
+        '@media only screen and (max-width: 960px) and (min-width: 600px)': {
+            width: '100%',
+        },
+        '@media only screen and (max-width: 599px)': {
+            width: '100%',
+        }
+    },
+    ListListImgBlock: {
+        display: 'grid',
+        width: '40%',
+        marginLeft: '24px',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        columnGap: '6px',
+        rowGap: '6px',
+        maxHeight: '400px',
+        overflow: 'auto',
+        '& img': {
+            width: '100%',
+        },
+        '@media only screen and (max-width: 960px) and (min-width: 600px)': {
+            width: '100%',
+            marginLeft: '0px',
+            margin: "16px 0px",
+            maxHeight: '300px',
+        },
+        '@media only screen and (max-width: 599px)': {
+            width: '100%',
+            marginLeft: '0px',
+            margin: "16px 0px",
+            maxHeight: '200px',
+        }
+    },
     ListInfoBlock: props => ({
-        flex: '1 0 40%',
-        maxWidth: '300px',
+        flex: '1',
+        maxWidth: '1240px',
+        width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        padding: '0 8px',
     }),
+    ListInfoBlockDetail: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        margin: '16px 0',
+        textAlign: 'center',
+    },
     ListInfoBlockBtn: props => ({
         marginTop: 'auto'
     }),
@@ -56,7 +109,6 @@ export const ProjectDetailStyle = createUseStyles({
             maxWidth: '100%',
             display: 'flex',
             flexDirection: 'column',
-            padding: '0 8px',
         }),
     },
 });

@@ -10,6 +10,19 @@ export const cardStatusList = [{
     startDate: '2020-01-13 03:25:21',
     endDate: '2020-02-13 09:25:31',
     purchaserBackgroundChecked: true,
+    by: 'David 1 LLC',
+    user: {
+        firstName: 'David',
+        lastName: 'Chen',
+        companyName: 'David 1 LLC',
+        phoneNumber: '6782003845',
+        address: '832 stansbury dr',
+        city: 'marietta',
+        state: 'Ga',
+        zipCode: '30066',
+        userVerifyied: 'true',
+        ssn: '###-##-####',
+    },
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -31,7 +44,26 @@ export const cardStatusList = [{
         }
     },
     propertyDetails: {
-        images: ['a.jpg', 'b.jpg', 'c.jpg'],
+        images: [
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg',
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg',
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg',
+        ],
         location: {
             address: '123 mock st',
             address2: '#23',
@@ -70,6 +102,19 @@ export const cardStatusList = [{
     startDate: '2020-03-02 03:25:21',
     endDate: '2020-05-02 09:25:31',
     purchaserBackgroundChecked: false,
+    by: 'David Chen',
+    user: {
+        firstName: 'David',
+        lastName: 'Chen',
+        companyName: 'David 2 LLC',
+        phoneNumber: '6782003845',
+        address: '832 stansbury dr',
+        city: 'marietta',
+        state: 'Ga',
+        zipCode: '30066',
+        userVerifyied: 'true',
+        ssn: '###-##-####',
+    },
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -91,7 +136,14 @@ export const cardStatusList = [{
         }
     },
     propertyDetails: {
-        images: ['a.jpg', 'b.jpg', 'c.jpg'],
+        images: [
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg'
+        ],
         location: {
             address: '123 mock st',
             address2: '#23',
@@ -130,6 +182,19 @@ export const cardStatusList = [{
     startDate: '2020-03-02 03:25:21',
     endDate: '2020-04-02 09:25:31',
     purchaserBackgroundChecked: false,
+    by: 'David 3 LLC',
+    user: {
+        firstName: 'David',
+        lastName: 'Chen',
+        companyName: 'David 3 LLC',
+        phoneNumber: '6782003845',
+        address: '832 stansbury dr',
+        city: 'marietta',
+        state: 'Ga',
+        zipCode: '30066',
+        userVerifyied: 'true',
+        ssn: '###-##-####',
+    },
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -151,7 +216,14 @@ export const cardStatusList = [{
         }
     },
     propertyDetails: {
-        images: ['a.jpg', 'b.jpg', 'c.jpg'],
+        images: [
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg',
+        ],
         location: {
             address: '123 mock st',
             address2: '#23',
@@ -190,6 +262,19 @@ export const cardStatusList = [{
     startDate: '2020-02-02 03:25:21',
     endDate: '2020-03-02 09:25:31',
     purchaserBackgroundChecked: false,
+    by: 'David',
+    user: {
+        firstName: 'David',
+        lastName: 'Chen',
+        companyName: 'David 4 LLC',
+        phoneNumber: '6782003845',
+        address: '832 stansbury dr',
+        city: 'marietta',
+        state: 'Ga',
+        zipCode: '30066',
+        userVerifyied: 'true',
+        ssn: '###-##-####',
+    },
     campaign: {
         story: 'why',
         risk: 'risk',
@@ -211,7 +296,14 @@ export const cardStatusList = [{
         }
     },
     propertyDetails: {
-        images: ['a.jpg', 'b.jpg', 'c.jpg'],
+        images: [
+            'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/suburban-house-royalty-free-image-1584972559.jpg',
+            'https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F1026205392%2F0x0.jpg',
+            'https://s.wsj.net/public/resources/images/B3-DM067_RIGHTS_IM_20190319162958.jpg',
+            'https://www.chrisallenrealestate.com/wp-content/uploads/2018/08/Depositphotos_1448864_l-2015.jpeg',
+            'https://modernlivingre.com/wp-content/uploads/2016/02/el-cid-home-west-palm-beach-1024x681.jpg',
+            'https://www.realestatechandler.com/uploads/agent-1/Gilbert%20luxury%20homes%20for%20sale%20in%20Ashland%20Ranch.jpg'
+        ],
         location: {
             address: '123 mock st',
             address2: '#23',

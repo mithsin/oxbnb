@@ -9,7 +9,7 @@ export const useStyles = createUseStyles({
     imageBlock: {
         // width: '80%',
         maxWidth: '1200px',
-        height: '65vh',
+        height: '400px',
         margin: 'auto',
         // boxShadow: 'white 0px 0px 12px 0px inset',
         borderRadius: '6px',
