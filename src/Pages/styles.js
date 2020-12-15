@@ -30,6 +30,7 @@ export const ProjectDetailStyle = createUseStyles({
     ListImgBlock: {
         flex: '1',
         maxWidth: '1240px',
+        width: 'calc(100% - 16px)',
         // maxWidth: '500px',
         padding: '0px',
         display: 'flex',
@@ -80,7 +81,7 @@ export const ProjectDetailStyle = createUseStyles({
     ListInfoBlock: props => ({
         flex: '1',
         maxWidth: '1240px',
-        width: '100%',
+        width: 'calc(100% - 16px)',
         display: 'flex',
         flexDirection: 'column',
     }),

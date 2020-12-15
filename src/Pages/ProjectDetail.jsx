@@ -62,6 +62,9 @@ const ProjectDetail = (props) => {
                     </div>
                 </div>
             </div>
+            <div>
+                <h1>BLOCK</h1>
+            </div>
         </div>
     );
 };

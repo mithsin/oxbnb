@@ -34,6 +34,13 @@ export const CardItemStyle = createUseStyles({
         fontSize: '26px',
         fontWeight: '600',
         margin: '16px',
+        display: 'flex',
+        flexDirection: 'column',
+        '& span': {
+            textAlign: 'center',
+            fontSize: '16px',
+            fontFamily: 'Caveat, cursive',
+        }
     },
     CardBtnWrapper: {
         margin: '8px 0',

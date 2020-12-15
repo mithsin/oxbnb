@@ -28,8 +28,11 @@ const CardItem = ({cardStatus}) => {
             </li>
             <li className={classes.CardTitleLi}>
                 {cardStatus.title}
+                <span>
+                    Ask ${cardStatus.accumulated}, {percentageOfHouseMarketValue()}% of est. market value
+                </span>
             </li>
-            <li className={classes.CardByLi}>${cardStatus.accumulated}, {percentageOfHouseMarketValue()}% of est. market value</li> 
+            {/* <li className={classes.CardByLi}>${cardStatus.accumulated}, {percentageOfHouseMarketValue()}% of est. market value</li>  */}
             <li className={classes.CardByLi}>by: {cardStatus.by}</li>
             <li className={classes.CardBtnWrapper}>
                 <SubmitButton
