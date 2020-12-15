@@ -16,8 +16,7 @@ const ImgPreNextCarousel = ({imgSrc=[], selectedIndex, arrowEnabled=false}) => {
         backgroundPosition: 'center',
         backgroundSize: 'cover'
     })
-    console.log('currentIndex-? ', currentIndex)
-    console.log('selectedIndex-? ', selectedIndex)
+
     useEffect(()=>{
         setCurrentIndex(selectedIndex)
     },[selectedIndex])

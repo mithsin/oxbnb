@@ -19,16 +19,17 @@
     "jss": "^10.4.0",
     "jss-preset-default": "^10.4.0",
     "moment": "^2.29.1",
-    "react": "^16.13.1",
+    "react": "^17.0.1",
     "react-app-polyfill": "^1.0.6",
-    "react-dom": "^16.13.1",
+    "react-dom": "^17.0.1",
     "react-jss": "^10.4.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.1",
     "react-swipeable": "^5.5.1",
     "styled-jss": "^2.2.3",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.0",
+    "web-vitals": "^0.2.4"
   },
   "scripts": {
     "start": "react-scripts start",
