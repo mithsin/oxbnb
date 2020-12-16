@@ -60,7 +60,7 @@ const Header = () => {
     const { previousScrollTop, currentScrollTop } = callbackData;
     const isScrolledDown = previousScrollTop < currentScrollTop;
     const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
-    setShouldShowShadow((!isScrolledDown || !isMinimumScrolled) && currentScrollTop > 2);
+    setShouldShowShadow( currentScrollTop > 2);
     setShouldHideHeader(isScrolledDown && isMinimumScrolled);
   });
 
