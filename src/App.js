@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
         <Header />
-        <PageRouter />
+        <div id="scrollBody">
+          <PageRouter />
+        </div>
     </div>
   );
 }

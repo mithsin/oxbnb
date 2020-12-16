@@ -1,22 +1,20 @@
 import { createUseStyles } from 'react-jss'
 import { makeStyles } from '@material-ui/core/styles';
 
-export const useCustomStyles = createUseStyles({
-  headerWrapper: {
-    paddingTop: "2rem",
-    position: "fixed",
-    width: "100%",
-    zIndex: "9999",
-    backgroundColor: 'rgba(255,255,255,.2)'
-  },
-});
-
 export const useHeaderStyles = makeStyles((theme) => ({
   headerWrapper: {
-    paddingTop: "2rem",
-    position: "fixed",
-    width: "100%",
-    zIndex: "9999"
+    top: '0',
+    left: '0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    height: '86px',
+    // backgroundColor: '#fff',
+    backgroundColor: 'rgba(255,255,255,.9)',
+    color: '#333',
+    transform: 'translateY(0)',
+    transition: 'transform 0.3s ease',
   },
   grow: {
     flexGrow: 1,
@@ -124,6 +122,18 @@ export const useHeaderStyles = makeStyles((theme) => ({
   },
   notLoginBlock: {
     display: "flex"
+  },
+  shadow: {
+    boxShadow:' 0 9px 9px -9px rgba(0, 0, 0, 0.13)',
+    position: "fixed",
+    top: '0',
+    zIndex: 99999,
+    transform: 'translateY(0)',
+    transition: 'transform 0.6s ease',
+  },
+  hidden: {
+    transform: 'translateY(-110%)',
+    transition: 'transform 0.6s ease',
   },
 }));
 

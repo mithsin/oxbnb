@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import Login from 'Components/Blocks/Login';
 import { ProfileBlock, MenuBlock } from 'Pages/Constants/HeaderComponents';
 import useOnClickOutside from 'Utils/useOnClickOutside';
-import { useHeaderStyles, useCustomStyles } from './styles';
+import { useHeaderStyles } from './styles';
+import useDocumentScrollThrottled from 'hooks/useDocumentScrollThrottled';
+import { composeClassName } from 'Utils/comment'
 import {
     Avatar,
     AppBar,
@@ -30,7 +32,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 const Header = () => {
   const classes = useHeaderStyles();
-  const custom = useCustomStyles();
+  // const custom = useCustomStyles();
   const dispatch = useDispatch();
   const loginRef = useRef(null);
   const profileRef = useRef(null);
@@ -47,6 +49,23 @@ const Header = () => {
   const [openMobileProfile, setOpenMobileProfile] = useState(false);
   const [openProfilBlock, setOpenProfilBlock] = useState(false);
   const [openMenuBlock, setOpenMenuBlock] = useState(false);
+
+  const [shouldHideHeader, setShouldHideHeader] = useState(false);
+  const [shouldShowShadow, setShouldShowShadow] = useState(false);
+
+  const MINIMUM_SCROLL = 80;
+  const TIMEOUT_DELAY = 400;
+
+  useDocumentScrollThrottled(callbackData => {
+    const { previousScrollTop, currentScrollTop } = callbackData;
+    const isScrolledDown = previousScrollTop < currentScrollTop;
+    const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL;
+    setShouldShowShadow((!isScrolledDown || !isMinimumScrolled) && currentScrollTop > 2);
+    setShouldHideHeader(isScrolledDown && isMinimumScrolled);
+  });
+
+  const shadowStyle = shouldShowShadow ? classes.shadow : '';
+  const hiddenStyle = shouldHideHeader ? classes.hidden : '';
 
   useOnClickOutside(loginRef, () => setopenLoginBlock(false));
   useOnClickOutside(profileRef, () => setOpenProfileMenu(false), profileRefSub);
@@ -177,7 +196,7 @@ const Header = () => {
   );
 
   return (
-    <div className={custom.headerWrapper}>
+    <div className={ composeClassName(classes.headerWrapper, shadowStyle, hiddenStyle)}>
       <AppBar position="static" className={classes.AppBar}>
         <Toolbar>
           <IconButton

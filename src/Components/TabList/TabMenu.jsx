@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import TabPanel from 'Components/TabList/TabComponents/TabPanel';
 
 
-const a11yProps  = (index) => {
+const a11yProps = (index) => {
   return {
     id: `nav-tab-${index}`,
     'aria-controls': `nav-tabpanel-${index}`,

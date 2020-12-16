@@ -4,7 +4,8 @@ import { SubjectInfoBlock } from 'Components/Blocks/InfoBlocks';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { ProjectDetailStyle } from './styles';
 import ImgPreNextCarousel from 'Components/ImageBlock/ImgPreNextCarousel';
-import TabMenu from 'Components/TabList/TabMenu';
+import TabMenuScroll from 'Components/TabList/TabMenuScroll';
+import SimpleBreadcrumbs from 'Components/SimpleBreadcrumbs';
 
 // Mock Data
 import { cardStatusList } from 'Pages/mockData';
@@ -27,6 +28,7 @@ const ProjectDetail = (props) => {
 
     return (
         <div className={classes.Wrapper}>
+            <SimpleBreadcrumbs currentLocation={projectState.title}/>
             <div className={classes.TitleWrapper}>
                 <h2>{projectState.title}</h2>
                 <p>{projectState.description}</p>
@@ -63,9 +65,8 @@ const ProjectDetail = (props) => {
                     </div>
                 </div>
             </div>
-            <div>
-                <h1>BLOCK</h1>
-                <TabMenu />
+            <div className={classes.ListInfoDetail}>
+                <TabMenuScroll />
             </div>
         </div>
     );

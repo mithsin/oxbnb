@@ -13,6 +13,7 @@ export const ProjectDetailStyle = createUseStyles({
         flexDirection: 'column',
         flex: 1,
         maxWidth: '1440px',
+        margin: 'auto',
     }),
     TitleWrapper: props => ({
         display: 'flex',
@@ -112,6 +113,14 @@ export const ProjectDetailStyle = createUseStyles({
             flexDirection: 'column',
         }),
     },
+    ListInfoDetail: {
+        display: 'flex',
+        flexBasis: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+        margin: '2rem 0',
+    },
 });
 
 export const signUpStyles = createUseStyles({
@@ -192,5 +201,6 @@ export const homeStyles = createUseStyles({
         '@media only screen and (max-width: 599px)': {
             gridTemplateColumns: 'auto',
         }
-    }
+    },
+
 });
