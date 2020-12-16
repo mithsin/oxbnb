@@ -13,7 +13,7 @@ export const useHeaderStyles = makeStyles((theme) => ({
     // backgroundColor: '#fff',
     backgroundColor: 'rgba(255,255,255,.9)',
     color: '#333',
-    transform: 'translateY(0)',
+    // transform: 'translateY(0)',
     transition: 'transform 0.3s ease',
   },
   grow: {
