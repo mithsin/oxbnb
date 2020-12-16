@@ -35,11 +35,11 @@ export const ProjectDetailStyle = createUseStyles({
         padding: '0px',
         display: 'flex',
         '@media only screen and (max-width: 960px) and (min-width: 600px)': {
-            padding: '10px',
+            // padding: '10px',
             flexDirection: 'column',
         },
         '@media only screen and (max-width: 599px)': {
-            padding: '10px',
+            // padding: '10px',
             flexDirection: 'column',
         }
     },

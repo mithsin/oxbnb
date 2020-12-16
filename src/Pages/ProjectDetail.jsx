@@ -4,6 +4,7 @@ import { SubjectInfoBlock } from 'Components/Blocks/InfoBlocks';
 import { SubmitButton } from 'Components/MUI/ButtonTypes';
 import { ProjectDetailStyle } from './styles';
 import ImgPreNextCarousel from 'Components/ImageBlock/ImgPreNextCarousel';
+import TabMenu from 'Components/TabList/TabMenu';
 
 // Mock Data
 import { cardStatusList } from 'Pages/mockData';
@@ -64,6 +65,7 @@ const ProjectDetail = (props) => {
             </div>
             <div>
                 <h1>BLOCK</h1>
+                <TabMenu />
             </div>
         </div>
     );
